@@ -1,3 +1,3 @@
 #Team SolarSystem
 
-##Authors Cristoffer And Martin
+##Authors Christoffer And Martin

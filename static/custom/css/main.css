@@ -1,0 +1,48 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+.footer {
+    width: 100%;
+    height: 60px;
+    bottom: 0;
+    line-height: 60px;
+    position: absolute;
+    text-align: center;
+    background-color: #454459;
+    overflow: hidden;
+}
+
+.main{
+    margin-bottom: 85px;
+}
+
+.navbar{
+    margin-bottom: 25px;
+}
+
+.row{
+    margin-bottom: 25px;
+}
+
+.sun_easter_egg:hover {
+    color: yellow;
+    animation-name: spin;
+    animation-duration: 1500ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@-moz-keyframes spin {
+    from { -moz-transform: rotate(0deg); }
+    to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}

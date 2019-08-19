@@ -19,3 +19,14 @@ values
 
 insert into PlanetRFIDMapping(RFIDTag,CelestialBody) values
 ("04a9f9aaa24080", "Earth");
+
+insert into orbitrelation(Centralbody,OrbitingBody,Distance,OrbitalSpeed) values
+("Sun",	"Mercury",	57910000,	47.89),
+("Sun",	"Venus",	108200000,	35.03),
+("Sun",	"Earth",	149597870,	29.79),
+("Sun",	"Mars",	227940000,	24.13),
+("Sun",	"Jupiter",	778330000,	13.06),
+("Sun",	"Saturn",	1426980000,	9.64),
+("Sun",	"Uranus",	2870990000,	6.81),
+("Sun",	"Neptune",	4497070000,	5.43),
+("Sun",	"Pluto",	5913520000,	4.74);

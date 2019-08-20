@@ -1,0 +1,23 @@
+{% extends "header.html" %}
+
+{% block body %}
+
+<p id="planet">
+<button onclick="f1()">Start updating</button>
+
+<script>    /* attach a submit handler to the form */
+    function f1() {
+        var t=setInterval(f,200);
+    }
+
+    function f() {
+        var posting = $.post('http://10.108.169.133:5000/client_update?scanner_id=jphaia', {
+        });
+
+        posting.done(function (data) {
+            document.getElementById("planet").innerHTML = data;
+        });
+    }
+</script>
+
+{% endblock %}

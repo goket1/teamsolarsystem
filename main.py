@@ -22,7 +22,6 @@ def asciiToHex(input):
 @app.route('/setsession/<string:sessionid>')
 def setindex(sessionid):
 	if sessionid != None:
-		
 		session['sessionid'] = sessionid
 	return render_template('main.html')
 	

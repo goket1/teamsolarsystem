@@ -1,5 +1,5 @@
 #Importing the microlibary Flask. (Download source: https://palletsprojects.com/p/flask/)
-from flask import Flask, render_template, request, session
+from flask import Flask, render_template, request, session, jsonify, abort
 import os
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -24,13 +24,42 @@ def setindex(sessionid):
 	if sessionid != None:
 		session['sessionid'] = sessionid
 	return render_template('main.html')
-	
+
+@app.route('/session', methods=['GET','POST','DELETE'])
+def sessionClient():
+	if(request.method == 'POST'):
+		if(request.headers.get('session') != None):
+			session['sessionid'] = request.headers.get('session')
+			return jsonify(session = session['sessionid'])
+		return '', 204
+	elif(request.method == "DELETE"):
+		try:
+			if 'sessionid' in session:
+				session['sessionid'] = None;
+			
+		finally:	
+			return jsonify(session ="None")
+	else:
+		try:
+			print('GETMethod')
+			if 'sessionid' in session:
+				print('GotSessionID'+ session['sessionid'])
+				return jsonify(session = session['sessionid'])
+				
+				
+			else:	
+				return jsonify(session ="None")
+		except:
+			return jsonify(session ="None")
+		#finally:
+		#	return jsonify(session ="Finally")
+
 @app.route('/getsession')
 def getindex():
 	if 'sessionid' in session:
-		return session['sessionid']
+		return jsonify(session =session['sessionid'])
 	else:	
-		return "None";
+		return jsonify(session ="None")
 		
 @app.route('/')
 def index():
@@ -38,14 +67,22 @@ def index():
 
 @app.route('/planet/<string:sessionid>')
 def show_planet(sessionid):
-	return sessionid;
+	return sessionid
 
 #Main Entry for the scanner to scan RFID
 @app.route('/planet_scan', methods=['GET', 'POST'])
 def planet_scan():
     print(asciiToHex(request.args["planet_id"]))
     return ('1')
+	
+@app.route('/showplanet')
+def showplanet():
+   return render_template('showplanet.html')
+   
+@app.route('/javascriptplayground')
+def playground():
+   return render_template('jsplayground.html')
 
 #Starts the server on the host
 if __name__ == '__main__':
-    app.run(host='127.0.0.1')
+    app.run(host='127.0.0.1',debug=True)

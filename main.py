@@ -1,5 +1,6 @@
 #Importing the microlibary Flask. (Download source: https://palletsprojects.com/p/flask/)
 from flask import Flask, render_template, request, session, jsonify, abort
+#Imports OS to have access to a random value to encrypt sessions
 import os
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -41,7 +42,7 @@ def sessionClient():
 			return jsonify(session ="None")
 	else:
 		try:
-			print('GETMethod')
+			#print('GETMethod')
 			if 'sessionid' in session:
 				print('GotSessionID'+ session['sessionid'])
 				return jsonify(session = session['sessionid'])
@@ -65,7 +66,7 @@ def getindex():
 def index():
    return render_template('main.html')
 
-@app.route('/planet/<string:sessionid>')
+@app.route('/planet')
 def show_planet(sessionid):
 	return sessionid
 

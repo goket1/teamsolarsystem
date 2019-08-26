@@ -2,11 +2,58 @@
 
 {% block body %}
 
-<form action="/">
-  Session: <input type="text" name="fname"><br>
-  <input type="submit" value="Submit">
-</form>
-<script type="text/javascript">
+
+  Session: <input type="text" id="session"/>
+  <button onclick="setSession()">Set Session</button>
   
+
+<script type="text/javascript">
+	let session = null;
+	getSession();
+	if(session = null)
+	{
+		//Show modal
+	}
+	else {
+		//while(true){
+
+		//}
+	}
+	//Sets The session on the backend 
+  function setSession(){
+        //Checks if the there is data inserted into the input text variable
+		if(document.getElementById("session").value.length != 0)
+		{
+			//Custom Ajax call to get data about the current session
+			$.ajax({
+				//The API endpoint to call.
+				url: 'http://127.0.0.1:5000/session',
+				//The Method type.
+				method: 'POST',
+				//Headers in the request
+				headers: {
+					session: document.getElementById("session").value
+				},
+				//If the ajax call is successfull this method will be called.
+				success: function(data){
+					printSessionStatus(data);
+				}
+		});
+	}
+	}
+	// Shows the session on the screen
+	function printSessionStatus(json){
+		//fetches the document and writes into the html the data gotten in the field session
+		session = (JSON.stringify(json.session));
+	}
+	function getSession(){
+            //console.log(getSession);
+        $.get("http://127.0.0.1:5000/session",
+          function(data){
+            printSessionStatus(data);
+            // document.getElementById("json").innerHTML = (JSON.stringify(data));
+          } 
+        );
+        }
 </script>
 {% endblock %}

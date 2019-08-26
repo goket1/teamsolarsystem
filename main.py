@@ -4,8 +4,12 @@ from flask import Flask, render_template, request, url_for, redirect, session
 #Database
 from dbconnect import connection
 
+#Other
 import random
 import string
+
+#Enviroment file
+from environment import *
 
 app = Flask(__name__)
 
@@ -91,15 +95,6 @@ def client_update():
 def planet_page():
     return render_template("planet.html")
 
-@app.route('/register/', methods=["GET","POST"])
-def register_page():
-    try:
-        c, conn = connection()
-        return("okay")
-    except Exception as e:
-        return(str(e))
-
 #Starts the server on the host (Hardcoded to my interface)
 if __name__ == '__main__':
-    app.run(host='10.108.169.133')
-#BBC
+    app.run(host=environment_ip)

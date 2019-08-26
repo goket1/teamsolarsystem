@@ -1,5 +1,7 @@
 #Importing the microlibary Flask. (Download source: https://palletsprojects.com/p/flask/)
 from flask import Flask, render_template, request, session, jsonify, abort
+
+#from dbconnect import connection
 #Imports OS to have access to a random value to encrypt sessions
 import os
 app = Flask(__name__)
@@ -36,7 +38,7 @@ def sessionClient():
 	elif(request.method == "DELETE"):
 		try:
 			if 'sessionid' in session:
-				session['sessionid'] = None;
+				session['sessionid'] = None
 			
 		finally:	
 			return jsonify(session ="None")
@@ -54,6 +56,22 @@ def sessionClient():
 			return jsonify(session ="None")
 		#finally:
 		#	return jsonify(session ="Finally")
+
+'''
+@app.route('/sessions')
+def getSessions():
+
+
+	c, conn = connection()
+
+	c.execute("select * from session;")
+
+	rv = conn.fetchall()
+	conn.close()
+
+	return str(rv)
+'''
+
 
 @app.route('/getsession')
 def getindex():

@@ -1,15 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <script>
-        
-       function setSession(){
+
+{% extends "header.html" %}
+
+{% block body %}
+
+<p id="planet">
+<button onclick="f1()">Start updating</button>
+
+<script>    /* attach a submit handler to the form */
+    function f1() {
+        var t=setInterval(f,200);
+    }
+
+    function f() {
+        var posting = $.post('http://10.108.169.133:5000/client_update?scanner_id=jphaia', {
+        });
+
+        posting.done(function (data) {
+            document.getElementById("planet").innerHTML = data;
+        });
+    }
+         function setSession(){
         //Checks if the there is data inserted into the input text variable
 		if(document.getElementById("session").value.length != 0)
 		{
@@ -35,8 +45,7 @@
 		//fetches the document and writes into the html the data gotten in the field session
 		document.getElementById("json").innerHTML = (JSON.stringify(json.session));
 	}
+</script>
 
+{% endblock %}
 
-    </script>
-</body>
-</html>

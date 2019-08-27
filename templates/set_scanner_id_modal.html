@@ -1,0 +1,73 @@
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Scanner id</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">scanner id:</span>
+          </div>
+        <input type="text" class="form-control" placeholder="R35J82" aria-label="Session id" aria-describedby="basic-addon1" list="hosting-plan" maxlength="6">
+            <datalist id="hosting-plan"></datalist>
+        </div>
+      </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <script>
+    // Wait for the dom to be loaded
+    document.addEventListener('DOMContentLoaded', function(event) {
+
+        // Setup an XMLHttpRequest / AJAX request
+        var request = new XMLHttpRequest();
+        request.open('GET', '/sessions');
+
+        // Setup an "event listener".
+        request.onload = function() {
+            if (request.status >= 200 && request.status < 400){
+                var response = JSON.parse(request.responseText.toString());
+                console.log(response.sessions);
+                response.sessions.forEach(function(el){
+                    addListEntry(el, "session id");
+                });
+            }
+        };
+
+        // Send our request
+        request.send();
+    });
+
+
+    // Break the list adding code into a function for easier re-use
+    function addListEntry(value, text) {
+
+        // Create a new option element.
+        var optionNode =  document.createElement("option");
+
+        // Set the value
+        optionNode.value = value;
+
+        // create a text node and append it to the option element
+        optionNode.appendChild(document.createTextNode(text));
+
+        // Add the optionNode to the datalist
+        document.getElementById("hosting-plan").appendChild(optionNode);
+
+    }
+    </script>

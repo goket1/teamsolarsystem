@@ -73,10 +73,9 @@ def sessionClient():
 @app.route('/sessions', methods=['GET'])
 def getSessions():
 
-
 	c, conn = connection()
 
-	data = c.execute("select session from session;")
+	data = c.execute("select Session from Session;")
 	#records = c.fetchall()
 	rv = c.fetchall()
 
@@ -87,8 +86,6 @@ def getSessions():
 		string.append(str(record[0]))
 		#arraycounter =+ 1
 	return jsonify(sessions= string)
-
-
 
 @app.route('/getsession')
 def getindex():

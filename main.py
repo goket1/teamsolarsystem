@@ -1,17 +1,18 @@
 #Importing the microlibary Flask. (Download source: https://palletsprojects.com/p/flask/)
-from flask import Flask, render_template, request, url_for, redirect, session
 
-#Database
+from flask import Flask, render_template, request, session, jsonify, abort
+
 from dbconnect import connection
-
-#Other
+#Imports OS to have access to a random value to encrypt sessions
+import os
 import random
 import string
 
-#Enviroment file
 from environment import *
 
+
 app = Flask(__name__)
+app.secret_key = os.urandom(24)
 
 def randomString(stringLength=10):
     """Generate a random string of fixed length """
@@ -33,9 +34,83 @@ def asciiToHex(input):
     return output
 
 #Standard home Page for the main entry to the page
+@app.route('/setsession/<string:sessionid>')
+def setindex(sessionid):
+	if sessionid != None:
+		session['sessionid'] = sessionid
+	return render_template('main.html')
+
+@app.route('/session', methods=['GET','POST','DELETE'])
+def sessionClient():
+	if(request.method == 'POST'):
+		if(request.headers.get('session') != None):
+			session['sessionid'] = request.headers.get('session')
+			return jsonify(session = session['sessionid'])
+		return '', 204
+	elif(request.method == "DELETE"):
+		try:
+			if 'sessionid' in session:
+				session['sessionid'] = None
+			
+		finally:	
+			return jsonify(session ="None")
+	else:
+		try:
+			#print('GETMethod')
+			if 'sessionid' in session:
+				print('GotSessionID'+ session['sessionid'])
+				return jsonify(session = session['sessionid'])
+				
+				
+			else:	
+				return jsonify(session ="None")
+		except:
+			return jsonify(session ="None")
+		#finally:
+		#	return jsonify(session ="Finally")
+
+
+@app.route('/sessions', methods=['GET'])
+def getSessions():
+
+
+	c, conn = connection()
+
+	data = c.execute("select session from session;")
+	#records = c.fetchall()
+	rv = c.fetchall()
+
+	conn.close()
+	string = []
+	#arraycounter = 0
+	for record in rv:
+		string.append(str(record[0]))
+		#arraycounter =+ 1
+	return jsonify(sessions= string)
+
+
+
+@app.route('/getsession')
+def getindex():
+	if 'sessionid' in session:
+		return jsonify(session =session['sessionid'])
+	else:	
+		return jsonify(session ="None")
+		
 @app.route('/')
 def index():
    return render_template('main.html')
+
+
+'''
+@app.route('/showplanet')
+def showplanet():
+   return render_template('showplanet.html')
+ 
+@app.route('/javascriptplayground')
+def playground():
+   return render_template('jsplayground.html')
+   '''  
 
 #Main Entry for the scanner to scan RFID, And get Scanner ID on boot
 @app.route('/planet_scanner', methods=['GET', 'POST'])
@@ -97,4 +172,5 @@ def planet_page():
 
 #Starts the server on the host (Hardcoded to my interface)
 if __name__ == '__main__':
+
     app.run(host=environment_ip)

@@ -72,7 +72,7 @@ def planet_scanner():
 
         return ('1')
     else:
-        print('Error in planet_scanner, perhapse it was call with the wrong url parameters')
+        print('Error in planet_scanner, perhaps it was call with the wrong url parameters')
         return "0"
 
 @app.route('/client_update', methods=['GET', 'POST'])
@@ -82,7 +82,7 @@ def client_update():
         #Database stuff
         c, conn = connection()
 
-        data = c.execute("select * from CelestialBody join PlanetRFIDMapping on CelestialBody.Name = PlanetRFIDMapping.CelestialBody where PlanetRFIDMapping.RFIDTag = (select RFIDTag from LastScanned where SessionID = '%s' order by LastScannedTs desc limit 1););" % (request.args.get("scanner_id")))
+        data = c.execute("select Name from CelestialBody join PlanetRFIDMapping on CelestialBody.Name = PlanetRFIDMapping.CelestialBody where PlanetRFIDMapping.RFIDTag = (select RFIDTag from LastScanned where SessionID = '%s' order by LastScannedTs desc limit 1););" % (request.args.get("scanner_id")))
 
         data = c.fetchone()
 

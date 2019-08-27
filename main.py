@@ -69,20 +69,25 @@ def sessionClient():
 		#finally:
 		#	return jsonify(session ="Finally")
 
-'''
-@app.route('/sessions')
+
+@app.route('/sessions', methods=['GET'])
 def getSessions():
 
 
 	c, conn = connection()
 
-	c.execute("select * from session;")
+	data = c.execute("select session from session;")
+	#records = c.fetchall()
+	rv = c.fetchall()
 
-	rv = conn.fetchall()
 	conn.close()
+	string = []
+	#arraycounter = 0
+	for record in rv:
+		string.append(str(record[0]))
+		#arraycounter =+ 1
+	return jsonify(sessions= string)
 
-	return str(rv)
-'''
 
 
 @app.route('/getsession')

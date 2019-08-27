@@ -1,19 +1,21 @@
 #Importing the microlibary Flask. (Download source: https://palletsprojects.com/p/flask/)
-
 from flask import Flask, render_template, request, session, jsonify, abort
-
+#Importing Database connection from the file "dbconnect.py" in the same location
 from dbconnect import connection
 #Imports OS to have access to a random value to encrypt sessions
 import os
+#Imports random to optain random numbers for making a random numbers
 import random
+#String for importing the ascii charset
 import string
-
+#
 from environment import *
 
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
+# Creates a random string that will be set to an SessionID
 def randomString(stringLength=10):
     """Generate a random string of fixed length """
     letters = string.ascii_lowercase
@@ -171,6 +173,12 @@ def planet_page():
     return render_template("planet.html")
 
 #Starts the server on the host (Hardcoded to my interface)
-if __name__ == '__main__':
-
-    app.run(host=environment_ip)
+debugmode = False
+#print(environment_debug)
+try:
+    debugmode = environment_debug
+             
+            
+finally:
+    if __name__ == '__main__':
+        app.run(host=environment_ip,debug = debugmode)

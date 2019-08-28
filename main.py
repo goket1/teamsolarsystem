@@ -86,7 +86,7 @@ def getSessions():
 
 	c, conn = connection()
 
-	data = c.execute("select Session,LastscannedTs from Session left outer join LastScanned on LastScanned.SessionID=Session.Session;")
+	data = c.execute("select Session,LastscannedTs from session left outer join LastScanned on LastScanned.SessionID=session.Session  group by session order by -LastscannedTs desc;")
 	#records = c.fetchall()
 	rv = c.fetchall()
 

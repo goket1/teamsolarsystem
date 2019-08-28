@@ -84,7 +84,6 @@ def sessionClient():
 @app.route('/sessions', methods=['GET'])
 def getSessions():
 
-
 	c, conn = connection()
 
 	data = c.execute("select session,LastscannedTs from session left outer join LastScanned on LastScanned.SessionID=session.Session;")
@@ -98,8 +97,6 @@ def getSessions():
 		objects.append(sessionInfo(record[0],record[1]))
 		#arraycounter =+ 1
 	return jsonify(sessions= [e.serialize() for e in objects])	
-
-
 
 @app.route('/getsession')
 def getindex():
@@ -168,7 +165,7 @@ def client_update():
 		#Database stuff
 		c, conn = connection()
 
-		data = c.execute("select * from CelestialBody join PlanetRFIDMapping on CelestialBody.Name = PlanetRFIDMapping.CelestialBody where PlanetRFIDMapping.RFIDTag = (select RFIDTag from LastScanned where SessionID = '%s' order by LastScannedTs desc limit 1););" % (request.args.get("scanner_id")))
+        data = c.execute("select Name from CelestialBody join PlanetRFIDMapping on CelestialBody.Name = PlanetRFIDMapping.CelestialBody where PlanetRFIDMapping.RFIDTag = (select RFIDTag from LastScanned where SessionID = '%s' order by LastScannedTs desc limit 1););" % (request.args.get("scanner_id")))
 
 		data = c.fetchone()
 

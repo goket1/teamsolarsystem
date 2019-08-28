@@ -11,29 +11,38 @@ import string
 #
 from environment import *
 
+class sessionInfo:
+	def __init__ (self,ses,ts):
+		self.session = ses
+		self.timestamp = ts
+	def serialize(self):
+		return{
+			"session" : self.session,
+			"timestamp" : self.timestamp
+		}
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
 # Creates a random string that will be set to an SessionID
 def randomString(stringLength=10):
-    """Generate a random string of fixed length """
-    letters = string.ascii_lowercase
-    return ''.join(random.choice(letters) for i in range(stringLength))
+	"""Generate a random string of fixed length """
+	letters = string.ascii_lowercase
+	return ''.join(random.choice(letters) for i in range(stringLength))
 
 #Converts ASCII to hexidececimal value
 def asciiToHex(input):
-    output = ""
+	output = ""
 	#Runs through all characters in the input to convert into ASCII based string from Hex
-    for character in input:
-        temp = hex(ord(character))[2:]
+	for character in input:
+		temp = hex(ord(character))[2:]
 		#If the starting lengh of the temp character is 1 then there will be added a 0 infront
-        if len(temp) <= 1:
-            # Adding the character based from the conversion in privous step
-            output += "0"
-        output += temp
+		if len(temp) <= 1:
+			# Adding the character based from the conversion in privous step
+			output += "0"
+		output += temp
 	#Returns the ASCII value of the hex
-    return output
+	return output
 
 #Standard home Page for the main entry to the page
 @app.route('/setsession/<string:sessionid>')
@@ -78,17 +87,17 @@ def getSessions():
 
 	c, conn = connection()
 
-	data = c.execute("select session from session;")
+	data = c.execute("select session,LastscannedTs from session left outer join LastScanned on LastScanned.SessionID=session.Session;")
 	#records = c.fetchall()
 	rv = c.fetchall()
 
 	conn.close()
-	string = []
+	objects = []
 	#arraycounter = 0
 	for record in rv:
-		string.append(str(record[0]))
+		objects.append(sessionInfo(record[0],record[1]))
 		#arraycounter =+ 1
-	return jsonify(sessions= string)
+	return jsonify(sessions= [e.serialize() for e in objects])	
 
 
 
@@ -117,68 +126,64 @@ def playground():
 #Main Entry for the scanner to scan RFID, And get Scanner ID on boot
 @app.route('/planet_scanner', methods=['GET', 'POST'])
 def planet_scanner():
-    print("Request args: " + str(request.args))
-    if(request.args.get("get_new_id") == "1"):
-        print("Scanner asked for a new id")
+	print("Request args: " + str(request.args))
+	if(request.args.get("get_new_id") == "1"):
+		print("Scanner asked for a new id")
 
-        scanner_id = randomString(6)
+		scanner_id = randomString(6)
 
-        print("Giving scanner id: " + scanner_id)
+		print("Giving scanner id: " + scanner_id)
 
-        #Database stuff
-        c, conn = connection()
+		#Database stuff
+		c, conn = connection()
 
-        c.execute("call InsertSession('%s');" % (scanner_id))
+		c.execute("call InsertSession('%s');" % (scanner_id))
 
-        conn.commit()
-        conn.close()
+		conn.commit()
+		conn.close()
 
-        return scanner_id
+		return scanner_id
 
-    elif (request.args.get("planet_id") != None) and (request.args.get("scanner_id") != None):
-        planet_hex = asciiToHex(request.args["planet_id"])
-        print("Scanned planet uid: " + planet_hex)
+	elif (request.args.get("planet_id") != None) and (request.args.get("scanner_id") != None):
+		planet_hex = asciiToHex(request.args["planet_id"])
+		print("Scanned planet uid: " + planet_hex)
 
-        #Database stuff
-        c, conn = connection()
+		#Database stuff
+		c, conn = connection()
 
-        c.execute("call PlanetScanned('%s', '%s');" % (request.args.get("scanner_id"), planet_hex))
+		c.execute("call PlanetScanned('%s', '%s');" % (request.args.get("scanner_id"), planet_hex))
 
-        conn.commit()
-        conn.close()
+		conn.commit()
+		conn.close()
 
-        return ('1')
-    else:
-        print('Error in planet_scanner, perhapse it was call with the wrong url parameters')
-        return "0"
+		return ('1')
+	else:
+		print('Error in planet_scanner, perhapse it was call with the wrong url parameters')
+		return "0"
 
 @app.route('/client_update', methods=['GET', 'POST'])
 def client_update():
-    if(request.args.get("scanner_id") != None):
-        print("Client asked for an update")
-        #Database stuff
-        c, conn = connection()
+	if(request.args.get("scanner_id") != None):
+		print("Client asked for an update")
+		#Database stuff
+		c, conn = connection()
 
-        data = c.execute("select * from CelestialBody join PlanetRFIDMapping on CelestialBody.Name = PlanetRFIDMapping.CelestialBody where PlanetRFIDMapping.RFIDTag = (select RFIDTag from LastScanned where SessionID = '%s' order by LastScannedTs desc limit 1););" % (request.args.get("scanner_id")))
+		data = c.execute("select * from CelestialBody join PlanetRFIDMapping on CelestialBody.Name = PlanetRFIDMapping.CelestialBody where PlanetRFIDMapping.RFIDTag = (select RFIDTag from LastScanned where SessionID = '%s' order by LastScannedTs desc limit 1););" % (request.args.get("scanner_id")))
 
-        data = c.fetchone()
+		data = c.fetchone()
 
-        print("Returning planet: " + str(data))
-        return str(data)
-    else:
-        return "0"
+		print("Returning planet: " + str(data))
+		return str(data)
+	else:
+		return "0"
 
 @app.route('/planet/', methods=["GET","POST"])
 def planet_page():
-    return render_template("planet.html")
+	return render_template("planet.html")
 
-#Starts the server on the host (Hardcoded to my interface)
 debugmode = False
-#print(environment_debug)
 try:
-    debugmode = environment_debug
-             
-            
+	debugmode = environment_debug     
 finally:
-    if __name__ == '__main__':
-        app.run(host=environment_ip,debug = debugmode)
+	if __name__ == '__main__':
+		app.run(host=environment_ip,debug = debugmode)

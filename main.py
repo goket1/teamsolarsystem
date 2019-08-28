@@ -62,8 +62,8 @@ def sessionClient():
 		try:
 			if 'sessionid' in session:
 				session['sessionid'] = None
-			
-		finally:	
+
+		finally:
 			return jsonify(session ="None")
 	else:
 		try:
@@ -71,9 +71,9 @@ def sessionClient():
 			if 'sessionid' in session:
 				print('GotSessionID'+ session['sessionid'])
 				return jsonify(session = session['sessionid'])
-				
-				
-			else:	
+
+
+			else:
 				return jsonify(session ="None")
 		except:
 			return jsonify(session ="None")
@@ -86,7 +86,7 @@ def getSessions():
 
 	c, conn = connection()
 
-	data = c.execute("select session,LastscannedTs from session left outer join LastScanned on LastScanned.SessionID=session.Session;")
+	data = c.execute("select Session,LastscannedTs from Session left outer join LastScanned on LastScanned.SessionID=Session.Session;")
 	#records = c.fetchall()
 	rv = c.fetchall()
 
@@ -96,15 +96,15 @@ def getSessions():
 	for record in rv:
 		objects.append(sessionInfo(record[0],record[1]))
 		#arraycounter =+ 1
-	return jsonify(sessions= [e.serialize() for e in objects])	
+	return jsonify(sessions= [e.serialize() for e in objects])
 
 @app.route('/getsession')
 def getindex():
 	if 'sessionid' in session:
 		return jsonify(session =session['sessionid'])
-	else:	
+	else:
 		return jsonify(session ="None")
-		
+
 @app.route('/')
 def index():
    return render_template('main.html')
@@ -118,7 +118,7 @@ def showplanet():
 @app.route('/javascriptplayground')
 def playground():
    return render_template('jsplayground.html')
-   '''  
+   '''
 
 #Main Entry for the scanner to scan RFID, And get Scanner ID on boot
 @app.route('/planet_scanner', methods=['GET', 'POST'])
@@ -160,19 +160,19 @@ def planet_scanner():
 
 @app.route('/client_update', methods=['GET', 'POST'])
 def client_update():
-	if(request.args.get("scanner_id") != None):
-		print("Client asked for an update")
-		#Database stuff
-		c, conn = connection()
+    if(request.args.get("scanner_id") != None):
+        print("Client asked for an update")
+        #Database stuff
+        c, conn = connection()
 
         data = c.execute("select Name from CelestialBody join PlanetRFIDMapping on CelestialBody.Name = PlanetRFIDMapping.CelestialBody where PlanetRFIDMapping.RFIDTag = (select RFIDTag from LastScanned where SessionID = '%s' order by LastScannedTs desc limit 1););" % (request.args.get("scanner_id")))
 
-		data = c.fetchone()
+        data = c.fetchone()
 
-		print("Returning planet: " + str(data))
-		return str(data)
-	else:
-		return "0"
+        print("Returning planet: " + str(data))
+        return str(data)
+    else:
+        return "0"
 
 @app.route('/planet/', methods=["GET","POST"])
 def planet_page():
@@ -180,7 +180,7 @@ def planet_page():
 
 debugmode = False
 try:
-	debugmode = environment_debug     
+	debugmode = environment_debug
 finally:
 	if __name__ == '__main__':
 		app.run(host=environment_ip,debug = debugmode)

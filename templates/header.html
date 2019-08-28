@@ -1,80 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Team solar system</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="{{ url_for('static', filename='bootstrap_dark/css/bootstrap.min.css') }}" rel="stylesheet">
+    <meta charset="utf-8">
+    <title>Team solar system</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{{ url_for('static', filename='bootstrap_dark/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='fontawesome/css/all.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='custom/css/main.css') }}" rel="stylesheet">
-	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 </head>
 <body>
 
+<!--Libraries-->
 <script src="{{ url_for('static', filename='jquery/jquery.min.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
 
-<!-- Modal -->
-<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="registerModalLabel">Register</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="post/register.html" id="registerForm" name="registerForm">
+<!--Custom scripts-->
+<script src="{{ url_for('static', filename='custom/css/set_scanner_id.js') }}"></script>
 
-                    <div class="form-row">
-                        <div class="col-md-6">
-                            <label for="registrationUserName">User name</label>
-                        </div>
-                        <div class="col-md-6">
-                            <span id='user_name_message'></span>
-                        </div>
-                    </div>
-                    <input type="text" class="form-control" name="registrationUserName" id="registrationUserName"
-                           placeholder="User name" required>
-                    <div class="form-row">
-                        <div class="col-md-6 mb-3">
-                            <label for="registrationPassword">Password</label>
-                            <input type="password" class="form-control" name="registrationPassword"
-                                   id="registrationPassword" placeholder="Password"
-                                   required>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="registrationPasswordRepeat">Repeat password</label>
-                            <input type="password" class="form-control" name="registrationPasswordRepeat"
-                                   id="registrationPasswordRepeat"
-                                   placeholder="Repeat password"
-                                   required>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-md-6 mb-3">
-                            <button id="registrationSubmitButton" class="btn btn-primary" type="submit" disabled="true">
-                                Submit
-                            </button>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <span id='password_message'></span>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script src="{{ url_for('static', filename='custom/js/password_match.js') }}"></script>
-
-    <header>
+<header>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark text-white">
         <a class="navbar-brand" href="/">
             <i class="fas fa-sun sun_easter_egg"></i>
@@ -97,29 +41,24 @@
                 </li>
             </ul>
 
-            <form class="form-inline my-2 my-lg-0\" action='post/login.html' method='post' id='login_form' name='login_form'>
-            <input class="form-control mr-sm-2" type="text" placeholder="Username"  id='loginUserName' name="loginUserName" required>
-            <input class="form-control mr-sm-2" type="password" placeholder="Password" id='loginPassword' name="loginPassword" required>
-            <button class="btn btn-outline-primary my-2 my-sm-0 mr-sm-2" type="submit">Login</button></form>
-
             <button type="button" class="btn btn-primary mr-3" data-toggle="modal" data-target="#registerModal">
                 Register
             </button>
         </div>
     </nav>
 </header>
-    <main role="main" class="container">
-        <div class="content main">
-            {% block body %}
+<main role="main" class="container">
+    <div class="content main">
+        {% block body %}
 
-            {% endblock %}
+        {% endblock %}
 
-        </div>
-    </main>
-    <footer class="footer text-muted">
-        <div class="container">
-            <span>Made by: Christoffer and Martin</span>
-        </div>
-    </footer>
+    </div>
+</main>
+<footer class="footer text-muted">
+    <div class="container">
+        <span>Made by: Christoffer and Martin</span>
+    </div>
+</footer>
 </body>
 </html>

@@ -1,2 +1,3 @@
 /StartDebugServer.bat
 environment.py
+__pycache__/

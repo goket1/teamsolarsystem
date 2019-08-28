@@ -44,59 +44,13 @@ def asciiToHex(input):
 	#Returns the ASCII value of the hex
 	return output
 
+
 #Standard home Page for the main entry to the page
 @app.route('/setsession/<string:sessionid>')
 def setindex(sessionid):
 	if sessionid != None:
 		session['sessionid'] = sessionid
 	return render_template('main.html')
-
-@app.route('/session', methods=['GET','POST','DELETE'])
-def sessionClient():
-	if(request.method == 'POST'):
-		if(request.headers.get('session') != None):
-			session['sessionid'] = request.headers.get('session')
-			return jsonify(session = session['sessionid'])
-		return '', 204
-	elif(request.method == "DELETE"):
-		try:
-			if 'sessionid' in session:
-				session['sessionid'] = None
-
-		finally:
-			return jsonify(session ="None")
-	else:
-		try:
-			#print('GETMethod')
-			if 'sessionid' in session:
-				print('GotSessionID'+ session['sessionid'])
-				return jsonify(session = session['sessionid'])
-
-
-			else:
-				return jsonify(session ="None")
-		except:
-			return jsonify(session ="None")
-		#finally:
-		#	return jsonify(session ="Finally")
-
-
-@app.route('/sessions', methods=['GET'])
-def getSessions():
-
-	c, conn = connection()
-
-	data = c.execute("select Session,LastscannedTs from session left outer join LastScanned on LastScanned.SessionID=session.Session  group by session order by -LastscannedTs desc;")
-	#records = c.fetchall()
-	rv = c.fetchall()
-
-	conn.close()
-	objects = []
-	#arraycounter = 0
-	for record in rv:
-		objects.append(sessionInfo(record[0],record[1]))
-		#arraycounter =+ 1
-	return jsonify(sessions= [e.serialize() for e in objects])
 
 @app.route('/getsession')
 def getindex():
@@ -119,6 +73,85 @@ def showplanet():
 def playground():
    return render_template('jsplayground.html')
    '''
+
+
+
+
+
+"""
+Section #Apis
+This is the all of the API's that exist in this script 
+"""
+#Shows, sets or deletes the session variable that exists on the backend
+@app.route('/session', methods=['GET','POST','DELETE'])
+def sessionClient():
+	#If the call for the endpoint is of type POST
+	if(request.method == 'POST'):
+		#If the header 'session' Exists in the request
+		if(request.headers.get('session') != None):
+			#the session is set to be the session
+			session['sessionid'] = request.headers.get('session')
+			#Returns the session to the request
+			return jsonify(session = session['sessionid'])
+		#If the request does not contain the header 'sesseion' then a response of 204 'No Content' is sent back
+		return '', 204
+	#If the call for the endpoint is of type DELETE
+	elif(request.method == "DELETE"):
+		#Try to set the session variable to none if it exists
+		try:
+			#Checks if the 'sessionid' exist in session
+			if 'sessionid' in session:
+				#If it exists then it is set to null/None and returned
+				session['sessionid'] = None
+		#returns json document wiht the current set session.
+		finally:
+			#TODO Return Null insetead of string
+			return jsonify(session ="None")
+	#This Is the GET method since Flask does not allow call to other methods which are not defined in the top at @app.route()
+	else:
+		#Try to obtain the sessionid from session 
+		try:
+			#try to obtain 'sessionid' from session 
+			if 'sessionid' in session:
+				print('GotSessionID'+ session['sessionid'])
+				#returns the value if it exist
+				return jsonify(session = session['sessionid'])
+			#If it does not exist 
+			else:
+				#TODO Return Null insetead of string
+				#Returns a json document
+				return jsonify(session ="None")
+		#If a error is thrown then this will run
+		except:
+			#TODO Return Null insetead of string
+			#Returns a json document
+			return jsonify(session ="None")
+
+#Shows the sessions that exist on the database which is returned once by each 
+@app.route('/sessions', methods=['GET'])
+def getSessions():
+	#Here we get the connection and cursor
+	#TODO rename C to cursor
+	c, conn = connection()
+
+	#Executes the database call to obtain the information on sessions and their lastest timestamp
+	# which is grouped so we get one entry per session and the lastest session scan
+	data = c.execute("select Session,LastscannedTs from session left outer join LastScanned on LastScanned.SessionID=session.Session group by session order by -LastscannedTs desc;")
+	
+	#Fetches all the rows returned by the query
+	rv = c.fetchall()
+
+	#closes the connection to the database
+	conn.close()
+	#creates an array.
+	objects = []
+	
+	#For each of the rows in the result
+	for record in rv:
+		#Create a new object of 'sessionInfo' from the records in in the record.
+		objects.append(sessionInfo(record[0],record[1]))
+	#Serializing the each of the objects to make it possible to make it to json objects
+	return jsonify(sessions= [e.serialize() for e in objects])
 
 #Main Entry for the scanner to scan RFID, And get Scanner ID on boot
 @app.route('/planet_scanner', methods=['GET', 'POST'])
@@ -158,6 +191,7 @@ def planet_scanner():
 		print('Error in planet_scanner, perhapse it was call with the wrong url parameters')
 		return "0"
 
+
 @app.route('/client_update', methods=['GET', 'POST'])
 def client_update():
     if(request.args.get("scanner_id") != None):
@@ -174,6 +208,7 @@ def client_update():
     else:
         return "0"
 
+#Deprecated Show 
 @app.route('/planet/', methods=["GET","POST"])
 def planet_page():
 	return render_template("planet.html")

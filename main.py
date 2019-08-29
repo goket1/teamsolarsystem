@@ -153,15 +153,21 @@ def getSessions():
 	#Serializing the each of the objects to make it possible to make it to json objects
 	return jsonify(sessions= [e.serialize() for e in objects])
 
+#TODO could be done with Headers instead of Arguments
+#TODO should be checked on get endpoint and post endpoint
+#TODO Remove or change how Text are printed out to the console
 #Main Entry for the scanner to scan RFID, And get Scanner ID on boot
 @app.route('/planet_scanner', methods=['GET', 'POST'])
 def planet_scanner():
+	#request.args is the location of queries so at the end of the ling '?parem=value'
 	print("Request args: " + str(request.args))
+	#Check the url parameters if it contains the parameter 'get_new_id' and its a string value of '1'
 	if(request.args.get("get_new_id") == "1"):
+		#Prints to the console that a scanner attempted to get an ID
 		print("Scanner asked for a new id")
-
+		#Creates a new session ID
 		scanner_id = randomString(6)
-
+		
 		print("Giving scanner id: " + scanner_id)
 
 		#Database stuff

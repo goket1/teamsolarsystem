@@ -132,11 +132,13 @@ def sessionClient():
 def getSessions():
 	#Here we get the connection and cursor
 	#TODO rename C to cursor
+	#TODO Try Catch on ALL database connecitons
 	c, conn = connection()
 
 	#Executes the database call to obtain the information on sessions and their lastest timestamp
 	# which is grouped so we get one entry per session and the lastest session scan
-	data = c.execute("select Session,LastscannedTs from session left outer join LastScanned on LastScanned.SessionID=session.Session group by session order by -LastscannedTs desc;")
+	print("Calling Session")
+	data = c.execute("call GetSessions();")
 	
 	#Fetches all the rows returned by the query
 	rv = c.fetchall()

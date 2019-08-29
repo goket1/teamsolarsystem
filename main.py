@@ -72,7 +72,7 @@ def showplanet():
 @app.route('/javascriptplayground')
 def playground():
    return render_template('jsplayground.html')
-   '''
+'''
 
 
 
@@ -131,21 +131,21 @@ def sessionClient():
 @app.route('/sessions', methods=['GET'])
 def getSessions():
 	#Here we get the connection and cursor
-	#TODO rename C to cursor
 	#TODO Try Catch on ALL database connecitons
-	c, conn = connection()
+	cursor, conn = connection()
 
 	#Executes the database call to obtain the information on sessions and their lastest timestamp
 	# which is grouped so we get one entry per session and the lastest session scan
 	print("Calling Session")
-	data = c.execute("call GetSessions();")
+	data = cursor.execute("call GetSessions();")
 	
 	#Fetches all the rows returned by the query
-	rv = c.fetchall()
+	rv = cursor.fetchall()
 
 	#closes the connection to the database
 	conn.close()
 	#creates an array.
+	#TODO Rename
 	objects = []
 	
 	#For each of the rows in the result
@@ -173,9 +173,9 @@ def planet_scanner():
 		print("Giving scanner id: " + scanner_id)
 
 		#Database stuff
-		c, conn = connection()
+		cursor, conn = connection()
 
-		c.execute("call InsertSession('%s');" % (scanner_id))
+		cursor.execute("call InsertSession('%s');" % (scanner_id))
 
 		conn.commit()
 		conn.close()
@@ -187,9 +187,9 @@ def planet_scanner():
 		print("Scanned planet uid: " + planet_hex)
 
 		#Database stuff
-		c, conn = connection()
+		cursor, conn = connection()
 
-		c.execute("call PlanetScanned('%s', '%s');" % (request.args.get("scanner_id"), planet_hex))
+		cursor.execute("call PlanetScanned('%s', '%s');" % (request.args.get("scanner_id"), planet_hex))
 
 		conn.commit()
 		conn.close()
@@ -205,18 +205,17 @@ def client_update():
     if(request.args.get("scanner_id") != None):
         print("Client asked for an update")
         #Database stuff
-        c, conn = connection()
+        cursor, conn = connection()
 
-        data = c.execute("select Name from CelestialBody join PlanetRFIDMapping on CelestialBody.Name = PlanetRFIDMapping.CelestialBody where PlanetRFIDMapping.RFIDTag = (select RFIDTag from LastScanned where SessionID = '%s' order by LastScannedTs desc limit 1););" % (request.args.get("scanner_id")))
+        data = cursor.execute("select Name from CelestialBody join PlanetRFIDMapping on CelestialBody.Name = PlanetRFIDMapping.CelestialBody where PlanetRFIDMapping.RFIDTag = (select RFIDTag from LastScanned where SessionID = '%s' order by LastScannedTs desc limit 1););" % (request.args.get("scanner_id")))
 
-        data = c.fetchone()
+        data = cursor.fetchone()
 
         print("Returning planet: " + str(data))
         return str(data)
     else:
         return "0"
 
-#Deprecated Show 
 @app.route('/planet/', methods=["GET","POST"])
 def planet_page():
 	return render_template("planet.html")

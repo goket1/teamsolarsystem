@@ -216,7 +216,6 @@ def client_update():
     else:
         return "0"
 
-#Deprecated Show 
 @app.route('/planet/', methods=["GET","POST"])
 def planet_page():
 	return render_template("planet.html")

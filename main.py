@@ -18,7 +18,7 @@ class sessionInfo:
 	def serialize(self):
 		return{
 			"session" : self.session,
-			"timestamp" : self.timestamp
+			"timestamp" : self.timestamp	
 		}
 
 app = Flask(__name__)
@@ -132,28 +132,33 @@ def sessionClient():
 def getSessions():
 	#Here we get the connection and cursor
 	#TODO Try Catch on ALL database connecitons
-	cursor, conn = connection()
+	try:
 
-	#Executes the database call to obtain the information on sessions and their lastest timestamp
-	# which is grouped so we get one entry per session and the lastest session scan
-	print("Calling Session")
-	data = cursor.execute("call GetSessions();")
-	
-	#Fetches all the rows returned by the query
-	rv = cursor.fetchall()
+		cursor, conn = connection()
 
-	#closes the connection to the database
-	conn.close()
-	#creates an array.
-	#TODO Rename
-	objects = []
-	
-	#For each of the rows in the result
-	for record in rv:
-		#Create a new object of 'sessionInfo' from the records in in the record.
-		objects.append(sessionInfo(record[0],record[1]))
-	#Serializing the each of the objects to make it possible to make it to json objects
-	return jsonify(sessions= [e.serialize() for e in objects])
+		#Executes the database call to obtain the information on sessions and their lastest timestamp
+		# which is grouped so we get one entry per session and the lastest session scan
+		print("Calling Session")
+		data = cursor.execute("call GetSessions();")
+		
+		#Fetches all the rows returned by the query
+		rv = cursor.fetchall()
+
+		#closes the connection to the database
+		conn.close()
+		#creates an array.
+		#TODO Rename
+		objects = []
+		
+		#For each of the rows in the result
+		for record in rv:
+			#Create a new object of 'sessionInfo' from the records in in the record.
+			objects.append(sessionInfo(record[0],record[1]))
+		#Serializing the each of the objects to make it possible to make it to json objects
+		return jsonify(sessions= [e.serialize() for e in objects])
+	except:
+		return jsonify(message="Error in connection to database or data")
+
 
 #TODO could be done with Headers instead of Arguments
 #TODO should be checked on get endpoint and post endpoint
@@ -171,30 +176,35 @@ def planet_scanner():
 		scanner_id = randomString(6)
 		
 		print("Giving scanner id: " + scanner_id)
+		try:
+			#Database stuff
+			cursor, conn = connection()
 
-		#Database stuff
-		cursor, conn = connection()
+			cursor.execute("call InsertSession('%s');" % (scanner_id))
 
-		cursor.execute("call InsertSession('%s');" % (scanner_id))
+			conn.commit()
+			conn.close()
 
-		conn.commit()
-		conn.close()
-
-		return scanner_id
+			return scanner_id
+		except:
+			return 500,''
 
 	elif (request.args.get("planet_id") != None) and (request.args.get("scanner_id") != None):
 		planet_hex = asciiToHex(request.args["planet_id"])
 		print("Scanned planet uid: " + planet_hex)
+		try:
 
-		#Database stuff
-		cursor, conn = connection()
+			#Database stuff
+			cursor, conn = connection()
 
-		cursor.execute("call PlanetScanned('%s', '%s');" % (request.args.get("scanner_id"), planet_hex))
+			cursor.execute("call PlanetScanned('%s', '%s');" % (request.args.get("scanner_id"), planet_hex))
 
-		conn.commit()
-		conn.close()
+			conn.commit()
+			conn.close()
 
-		return ('1')
+			return ('1')
+		except: 
+			return ('0')
 	else:
 		print('Error in planet_scanner, perhapse it was call with the wrong url parameters')
 		return "0"
@@ -202,19 +212,21 @@ def planet_scanner():
 
 @app.route('/client_update', methods=['GET', 'POST'])
 def client_update():
-    if(request.args.get("scanner_id") != None):
-        print("Client asked for an update")
-        #Database stuff
-        cursor, conn = connection()
+	if(request.args.get("scanner_id") != None):
+		try:
+			print("Client asked for an update")
+		#Database stuff
+			cursor, conn = connection()
 
-        data = cursor.execute("select Name from CelestialBody join PlanetRFIDMapping on CelestialBody.Name = PlanetRFIDMapping.CelestialBody where PlanetRFIDMapping.RFIDTag = (select RFIDTag from LastScanned where SessionID = '%s' order by LastScannedTs desc limit 1););" % (request.args.get("scanner_id")))
+			data = cursor.execute("select Name from CelestialBody join PlanetRFIDMapping on CelestialBody.Name = PlanetRFIDMapping.CelestialBody where PlanetRFIDMapping.RFIDTag = (select RFIDTag from LastScanned where SessionID = '%s' order by LastScannedTs desc limit 1););" % (request.args.get("scanner_id")))
 
-        data = cursor.fetchone()
-
-        print("Returning planet: " + str(data))
-        return str(data)
-    else:
-        return "0"
+			data = cursor.fetchone()
+			print("Returning planet: " + str(data))
+			return str(data)
+		except:
+			return jsonify(message="Error in connection to database or data")
+	else:
+		return "0"
 
 @app.route('/planet/', methods=["GET","POST"])
 def planet_page():

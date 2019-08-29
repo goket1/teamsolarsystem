@@ -1,8 +1,8 @@
-use solarsystem;
+use SolarSystem;
 
 delimiter //
 create procedure GetSessions()
 begin
-	select Session,LastscannedTs from session left outer join LastScanned on LastScanned.SessionID=session.Session group by session order by -LastscannedTs desc;
+	select Session,LastscannedTs from Session left outer join LastScanned on LastScanned.SessionID=Session.Session group by Session order by -LastscannedTs desc;
 end //
 delimiter ;

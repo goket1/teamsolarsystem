@@ -40,13 +40,6 @@ def asciiToHex(input):
 	#Returns the ASCII value of the hex
 	return output
 
-@app.route('/getsession')
-def getindex():
-	if 'sessionid' in session:
-		return jsonify(session =session['sessionid'])
-	else:
-		return jsonify(session ="None")
-
 @app.route('/')
 def index():
    return render_template('main.html')

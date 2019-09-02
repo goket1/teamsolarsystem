@@ -1,9 +1,8 @@
-
-
-<div class="input-group mb-3">
+<div class="input-group">
     <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1">scanner id:</span>
 </div>
-<input type="text" class="form-control" placeholder="R35J82" aria-label="Session id" aria-describedby="basic-addon1" list="hosting-plan" maxlength="6">
+<input id="set_session_id" type="text" class="form-control" placeholder="Type or select" aria-label="Session id" aria-describedby="basic-addon1" list="hosting-plan" maxlength="6">
     <datalist id="hosting-plan"></datalist>
 </div>
+<script src="{{ url_for('static', filename='custom/js/set_scanner_id.js') }}"></script>

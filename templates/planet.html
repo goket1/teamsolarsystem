@@ -3,22 +3,18 @@
 
 {% block body %}
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Launch demo modal
-</button>
-
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="sessionIDModal" tabindex="-1" role="dialog" aria-labelledby="sessionIDModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Scanner id</h5>
+        <h5 class="modal-title" id="sessionIDModalLabel">Input scanner id</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-
+        {% include 'set_scanner_id.html' %}
       </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -31,7 +27,7 @@
 <div class="bd-example carousel-fade">
   <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
-      <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleCaptions" data-slide-to="0"></li>
       <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
       <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
       <li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
@@ -44,8 +40,9 @@
 
     </ol>
     <div class="carousel-inner">
-      <div class="carousel-item">
-        <img src="/static/resources/images/Sun.png" class="d-block w-75" alt="...">
+      <div class="carousel-item active">
+        <img src="/static/resources/images/Sun.png" class="d-block w-50 img-responsive" alt="...">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fringilla dapibus quam sed blandit. Aenean lacinia lorem sed nisi pellentesque interdum. Sed eget suscipit metus, et feugiat metus. Phasellus dignissim, eros eu hendrerit scelerisque, odio leo dapibus odio, nec bibendum tellus ante ac risus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Duis sodales congue fermentum. Vivamus tristique sem non ullamcorper interdum. Nulla vel lacinia sem. Nullam eleifend blandit nisi, vehicula hendrerit metus pellentesque vel. Pellentesque mattis a lectus vel ornare. Nullam sapien arcu, placerat eget maximus et, suscipit in ligula. Mauris auctor, massa vel dictum venenatis, est dolor gravida sapien, in ultricies augue metus ut diam. Sed quis erat nunc. Maecenas sem libero, venenatis et auctor vitae, consequat ut libero. Sed luctus, erat non consectetur venenatis, lorem erat rhoncus nisl, ac condimentum turpis lacus at leo. Suspendisse potenti. Suspendisse convallis quam vel ex interdum suscipit. Aenean orci augue, euismod ut nisl ut, eleifend scelerisque arcu. Phasellus accumsan urna sodales turpis aliquet, ac euismod nibh rutrum. Praesent sed mi tempus, faucibus ipsum eu, pellentesque turpis. Fusce sagittis leo vel venenatis volutpat. Fusce ac mauris eu dui ullamcorper interdum vitae nec risus. Nam venenatis mattis lectus, eget molestie nisl rhoncus non. Maecenas eleifend metus a massa malesuada, ut lacinia sapien suscipit. Pellentesque volutpat eros ut metus consectetur maximus. Fusce hendrerit feugiat rhoncus. Quisque efficitur orci dolor. Mauris in lorem id mi ullamcorper iaculis nec eget ipsum. Vivamus ut molestie nunc, quis commodo justo. Fusce nisl libero, pretium quis rutrum eget, molestie at arcu. Morbi in massa sagittis, venenatis ex id, accumsan ipsum. Aliquam erat volutpat. Quisque at vulputate ex, in dignissim nunc. Quisque a egestas felis. Quisque sed hendrerit risus, in tincidunt nibh. Suspendisse condimentum neque sed ligula mollis, a viverra dui condimentum. Fusce a neque erat. Cras malesuada felis ut arcu pharetra, non placerat ligula malesuada. Sed ac efficitur mi, nec semper ante. Nunc arcu odio, blandit sed tristique non, vulputate in sem. Vestibulum pulvinar ipsum ut tellus euismod commodo. Fusce nec tortor felis. Aliquam sit amet urna dapibus, feugiat odio eu, tristique quam. Quisque ut lacus nec ante finibus finibus nec ullamcorper erat. Maecenas at felis imperdiet, eleifend tellus a, pretium nulla. Curabitur orci neque, luctus in sapien eget, molestie facilisis velit.</p>
         <div class="carousel-caption d-none d-md-block">
           <div class="p-3 mb-2 bg-dark text-white">
             <h5 class="text-light">Da sun</h5>
@@ -53,8 +50,8 @@
           </div>
         </div>
       </div>
-      <div class="carousel-item active">
-        <img src="/static/resources/images/Mercury.png" class="d-block w-75" alt="...">
+      <div class="carousel-item">
+        <img src="/static/resources/images/Mercury.png" class="d-block w-50" alt="...">
         <div class="carousel-caption d-none d-md-block">
           <div class="p-3 mb-2 bg-dark text-white">
             <h5>Mercury</h5>
@@ -63,7 +60,7 @@
         </div>
       </div>
       <div class="carousel-item">
-        <img src="/static/resources/images/Venus.png" class="d-block w-75" alt="...">
+        <img src="/static/resources/images/Venus.png" class="d-block w-50" alt="...">
         <div class="carousel-caption d-none d-md-block">
           <div class="p-3 mb-2 bg-dark text-white">
             <h5>Venus</h5>
@@ -72,7 +69,7 @@
         </div>
       </div>
       <div class="carousel-item">
-        <img src="/static/resources/images/Earth.png" class="d-block w-75" alt="...">
+        <img src="/static/resources/images/Earth.png" class="d-block w-50" alt="...">
         <div class="carousel-caption d-none d-md-block">
           <div class="p-3 mb-2 bg-dark text-white">
             <h5 class="text-light">Earth</h5>
@@ -81,7 +78,7 @@
         </div>
       </div>
       <div class="carousel-item">
-        <img src="/static/resources/images/Mars.png" class="d-block w-75" alt="...">
+        <img src="/static/resources/images/Mars.png" class="d-block w-50" alt="...">
         <div class="carousel-caption d-none d-md-block">
           <div class="p-3 mb-2 bg-dark text-white">
             <h5 class="text-light">Mars</h5>
@@ -90,7 +87,7 @@
         </div>
       </div>
       <div class="carousel-item">
-        <img src="/static/resources/images/Jupiter.png" class="d-block w-75" alt="...">
+        <img src="/static/resources/images/Jupiter.png" class="d-block w-50" alt="...">
         <div class="carousel-caption d-none d-md-block">
           <div class="p-3 mb-2 bg-dark text-white">
             <h5 class="text-light">Jupiter</h5>
@@ -99,7 +96,7 @@
         </div>
       </div>
       <div class="carousel-item">
-        <img src="/static/resources/images/Saturn.png" class="d-block w-75" alt="...">
+        <img src="/static/resources/images/Saturn.png" class="d-block w-50" alt="...">
         <div class="carousel-caption d-none d-md-block">
           <div class="p-3 mb-2 bg-dark text-white">
             <h5 class="text-light">Saturn</h5>
@@ -108,7 +105,7 @@
         </div>
       </div>
       <div class="carousel-item">
-        <img src="/static/resources/images/Uranus.png" class="d-block w-75" alt="...">
+        <img src="/static/resources/images/Uranus.png" class="d-block w-50" alt="...">
         <div class="carousel-caption d-none d-md-block">
           <div class="p-3 mb-2 bg-dark text-white">
             <h5 class="text-light">Uranus</h5>
@@ -117,7 +114,7 @@
         </div>
       </div>
       <div class="carousel-item">
-        <img src="/static/resources/images/Neptune.png" class="d-block w-75" alt="...">
+        <img src="/static/resources/images/Neptune.png" class="d-block w-50" alt="...">
         <div class="carousel-caption d-none d-md-block">
           <div class="p-3 mb-2 bg-dark text-white">
             <h5 class="text-light">Neptune</h5>
@@ -126,7 +123,7 @@
         </div>
       </div>
       <div class="carousel-item">
-        <img src="/static/resources/images/Pluto.png" class="d-block w-75" alt="...">
+        <img src="/static/resources/images/Pluto.png" class="d-block w-50" alt="...">
         <div class="carousel-caption d-none d-md-block">
           <div class="p-3 mb-2 bg-dark text-white">
             <h5 class="text-light">Pluto</h5>
@@ -138,60 +135,7 @@
   </div>
 </div>
 
-<p id="planet"/>
-<button onclick="f1()">Start updating</button>
-
-<script>    /* attach a submit handler to the form */
-    function f1() {
-        var t=setInterval(f,200);
-    }
-
-    function f() {
-        var posting = $.post('http://10.108.169.133:5000/client_update?scanner_id=wjmmuy', {
-        });
-
-        posting.done(function (data) {
-            document.getElementById("planet").innerHTML = data;
-            if (data == "('Mars',)"){
-              $('.carousel').carousel(3);
-              $('.carousel').carousel({
-                interval: false
-            });
-            }else if(data == "('Earth',)"){
-              $('.carousel').carousel(2);
-              $('.carousel').carousel({
-                interval: false
-            });
-            }
-        });
-    }
-         function setSession(){
-        //Checks if the there is data inserted into the input text variable
-		if(document.getElementById("session").value.length != 0)
-		{
-			//Custom Ajax call to get data about the current session
-			$.ajax({
-				//The API endpoint to call.
-				url: 'http://127.0.0.1:5000/session',
-				//The Method type.
-				method: 'POST',
-				//Headers in the request
-				headers: {
-					session: document.getElementById("session").value
-				},
-				//If the ajax call is successfull this method will be called.
-				success: function(data){
-					printSessionStatus(data);
-				}
-		});
-	}
-	}
-	// Shows the session on the screen
-	function printSessionStatus(json){
-		//fetches the document and writes into the html the data gotten in the field session
-		document.getElementById("json").innerHTML = (JSON.stringify(json.session));
-	}
-</script>
+<script src="{{ url_for('static', filename='custom/js/planet_updater.js') }}"></script>
 
 {% endblock %}
 

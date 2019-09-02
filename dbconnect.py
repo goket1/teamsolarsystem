@@ -6,6 +6,6 @@ def connection():
                            user=environment_db_user,
                            passwd=environment_db_passwd,
                            db=environment_db)
-    c = conn.cursor()
+    cursor = conn.cursor()
 
-    return c, conn
+    return cursor, conn

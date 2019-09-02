@@ -13,17 +13,12 @@ from environment import *
 #from apiendpoint import apiendpoints
 from apiendpoint import api_endpoint
 
-
-
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 #Register endpoints this makes it possible to split up files in flask
 #app.register_blueprint(apiendpoints)
 
-
-
 app.register_blueprint(api_endpoint)
-
 
 # Creates a random string that will be set to an SessionID
 def randomString(stringLength=10):
@@ -64,7 +59,6 @@ def getindex():
 def index():
    return render_template('main.html')
 
-
 '''
 @app.route('/showplanet')
 def showplanet():
@@ -75,31 +69,22 @@ def playground():
    return render_template('jsplayground.html')
 '''
 
-
-
-
-
 """
 Section #Apis
 This is the all of the API's that exist in this script 
 """
 
-
 # @app.route('/planetdata', methods=["GET"])
 # def planet_data():
 # 	try:
-
 # 		#Database stuff
 # 		cursor, conn = connection()
-
 # 		cursor.execute("call PlanetScanned('%s', '%s');" % (request.args.get("scanner_id"), planet_hex))
-
 # 		conn.commit()
 # 		conn.close()
 
 # 		return ('1')
 # 	except:
-
 # 	return "test"
 
 debugmode = False

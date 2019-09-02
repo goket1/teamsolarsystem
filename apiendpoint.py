@@ -95,7 +95,6 @@ def getSessions():
 	except:
 		return jsonify(message="Error in connection to database or data")
 
-
 #TODO could be done with Headers instead of Arguments
 #TODO should be checked on get endpoint and post endpoint
 #TODO Remove or change how Text are printed out to the console

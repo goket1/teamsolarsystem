@@ -14,6 +14,30 @@ class sessionInfo:
 			"session" : self.session,
 			"timestamp" : self.timestamp	
 		}
+		
+class PlanetInfo:
+	def __init__ (self,name,radius,description,
+	gravity,rotationspeed,surfacetempaverage, coretemp, bodytype):
+		self.name = name
+		self.radius = radius
+		self.description = description
+		self.gravity = gravity
+		self.rotationspeed = rotationspeed
+		self.surfacetempaverage = surfacetempaverage
+		self.coretemp = coretemp
+		self.bodytype = bodytype
+
+	def serialize(self):
+		return{
+			"name" : self.name,
+			"radius" : self.radius,
+			"description" : self.description,
+			"gravity" : self.gravity,
+			"rotationspeed" : self.rotationspeed,
+			"surfacetempaverage" : self.surfacetempaverage,
+			"coretemp" : self.coretemp,
+			"bodytype" : self.bodytype
+		}
 
 #To register http endpoints here we need to use the name 
 #that is defined in the line with Blueprint
@@ -181,29 +205,7 @@ def planet_page():
 
 #@api_endpoint.route("/lastestrfid")
 
-class PlanetInfo:
-	def __init__ (self,name,radius,description,
-	gravity,rotationspeed,surfacetempaverage, coretemp, bodytype):
-		self.name = name
-		self.radius = radius
-		self.description = description
-		self.gravity = gravity
-		self.rotationspeed = rotationspeed
-		self.surfacetempaverage = surfacetempaverage
-		self.coretemp = coretemp
-		self.bodytype = bodytype
 
-	def serialize(self):
-		return{
-			"name" : self.name,
-			"radius" : self.radius,
-			"description" : self.description,
-			"gravity" : self.gravity,
-			"rotationspeed" : self.rotationspeed,
-			"surfacetempaverage" : self.surfacetempaverage,
-			"coretemp" : self.coretemp,
-			"bodytype" : self.bodytype
-		}
 
 #This is the end point for getting information about a planet
 @api_endpoint.route('/planetInfo', methods=["GET","POST"])

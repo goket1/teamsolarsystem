@@ -15,23 +15,24 @@
 <script src="{{ url_for('static', filename='jquery/jquery.min.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
 
-<!--Custom scripts-->
-<script src="{{ url_for('static', filename='custom/css/set_scanner_id.js') }}"></script>
+<div class="star_background"></div>
+<div class="star_background_twinkling"></div>
 
 <header>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark text-white">
+    <!--Left side of header-->
+    <nav class="navbar navbar-expand-md navbar-dark text-white">
         <a class="navbar-brand" href="/">
             <i class="fas fa-sun sun_easter_egg"></i>
             Solar system</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="texts.php">Planet inspector</a>
+                    <a class="nav-link" href="/planet/">Planet inspector</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="newgitrepo.php">Some other stuff</a>
@@ -41,9 +42,10 @@
                 </li>
             </ul>
 
-            <button type="button" class="btn btn-primary mr-3" data-toggle="modal" data-target="#registerModal">
-                Register
-            </button>
+            <!--Right side of header-->
+            <div class="form-inline my-2 my-lg-0\">
+                {% include 'set_scanner_id.html' %}
+            </div>
         </div>
     </nav>
 </header>
@@ -55,10 +57,5 @@
 
     </div>
 </main>
-<footer class="footer text-muted">
-    <div class="container">
-        <span>Made by: Christoffer and Martin</span>
-    </div>
-</footer>
 </body>
 </html>

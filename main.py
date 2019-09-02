@@ -40,14 +40,6 @@ def asciiToHex(input):
 	#Returns the ASCII value of the hex
 	return output
 
-
-#Standard home Page for the main entry to the page
-@app.route('/setsession/<string:sessionid>')
-def setindex(sessionid):
-	if sessionid != None:
-		session['sessionid'] = sessionid
-	return render_template('main.html')
-
 @app.route('/getsession')
 def getindex():
 	if 'sessionid' in session:

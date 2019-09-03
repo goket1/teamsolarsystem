@@ -20,21 +20,6 @@ app.secret_key = os.urandom(24)
 
 app.register_blueprint(api_endpoint)
 
-
-#Standard home Page for the main entry to the page
-@app.route('/setsession/<string:sessionid>')
-def setindex(sessionid):
-	if sessionid != None:
-		session['sessionid'] = sessionid
-	return render_template('main.html')
-
-@app.route('/getsession')
-def getindex():
-	if 'sessionid' in session:
-		return jsonify(session =session['sessionid'])
-	else:
-		return jsonify(session ="None")
-
 @app.route('/')
 def index():
    return render_template('main.html')

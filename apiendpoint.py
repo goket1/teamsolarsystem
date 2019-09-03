@@ -14,6 +14,30 @@ class sessionInfo:
 			"session" : self.session,
 			"timestamp" : self.timestamp	
 		}
+		
+class PlanetInfo:
+	def __init__ (self,name,radius,description,
+	gravity,rotationspeed,surfacetempaverage, coretemp, bodytype):
+		self.name = name
+		self.radius = radius
+		self.description = description
+		self.gravity = gravity
+		self.rotationspeed = rotationspeed
+		self.surfacetempaverage = surfacetempaverage
+		self.coretemp = coretemp
+		self.bodytype = bodytype
+
+	def serialize(self):
+		return{
+			"name" : self.name,
+			"radius" : self.radius,
+			"description" : self.description,
+			"gravity" : self.gravity,
+			"rotationspeed" : self.rotationspeed,
+			"surfacetempaverage" : self.surfacetempaverage,
+			"coretemp" : self.coretemp,
+			"bodytype" : self.bodytype
+		}
 
 #To register http endpoints here we need to use the name 
 #that is defined in the line with Blueprint
@@ -95,6 +119,7 @@ def getSessions():
 	except:
 		return jsonify(message="Error in connection to database or data")
 
+
 #TODO could be done with Headers instead of Arguments
 #TODO should be checked on get endpoint and post endpoint
 #TODO Remove or change how Text are printed out to the console
@@ -170,3 +195,31 @@ def client_update():
 @api_endpoint.route('/planet/', methods=["GET","POST"])
 def planet_page():
 	return render_template("planet.html")
+
+
+# @api_endpoint.route("/bindplanets", methods=["POST"])
+# def bindPlanets()
+# 	if(request.header.get("Celestialbody") != None):
+# 		if(request.header.get("RFID") != None):
+
+
+#@api_endpoint.route("/lastestrfid")
+
+
+
+#This is the end point for getting information about a planet
+@api_endpoint.route('/planetInfo', methods=["GET","POST"])
+def planetinfo():
+	try:
+		#start a conneciton
+		cursor, conn = connection()
+		#Call the procedure GetPlanetInfomation
+		data = cursor.execute("call GetPlanetInformation('%s');" % (request.headers.get('session')))
+		#Fetches one entry(there should always only be one)
+		data = cursor.fetchone()
+		#get information in the response from the server
+		planet = PlanetInfo(data[0],data[1],data[2],data[3],data[4],data[5],data[6],data[7])
+		#return the planet object
+		return jsonify(planet.serialize())
+	except:
+		return jsonify(message="Error in connection to database or data")

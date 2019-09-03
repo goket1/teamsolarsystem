@@ -1,9 +1,34 @@
-#Importing blueprint 
+#Imports random to optain random numbers for making a random numbers
+import random
+#String for importing the ascii charset
+import string
+
+#Importing blueprint
 from flask import Blueprint,jsonify,session,request,render_template
 
 from dbconnect import connection
 #here i register the api with the name "api_endpoint"
 api_endpoint = Blueprint('api_endpoint', __name__)
+
+# Creates a random string that will be set to an SessionID
+def randomString(stringLength=10):
+	"""Generate a random string of fixed length """
+	letters = string.ascii_lowercase
+	return ''.join(random.choice(letters) for i in range(stringLength))
+
+#Converts ASCII to hexidececimal value
+def asciiToHex(input):
+	output = ""
+	#Runs through all characters in the input to convert into ASCII based string from Hex
+	for character in input:
+		temp = hex(ord(character))[2:]
+		#If the starting lengh of the temp character is 1 then there will be added a 0 infront
+		if len(temp) <= 1:
+			# Adding the character based from the conversion in privous step
+			output += "0"
+		output += temp
+	#Returns the ASCII value of the hex
+	return output
 
 class sessionInfo:
 	def __init__ (self,ses,ts):

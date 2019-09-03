@@ -4,10 +4,6 @@ from flask import Flask, render_template, request, session, jsonify, abort
 from dbconnect import connection
 #Imports OS to have access to a random value to encrypt sessions
 import os
-#Imports random to optain random numbers for making a random numbers
-import random
-#String for importing the ascii charset
-import string
 #
 from environment import *
 #from apiendpoint import apiendpoints
@@ -23,27 +19,6 @@ app.secret_key = os.urandom(24)
 
 
 app.register_blueprint(api_endpoint)
-
-
-# Creates a random string that will be set to an SessionID
-def randomString(stringLength=10):
-	"""Generate a random string of fixed length """
-	letters = string.ascii_lowercase
-	return ''.join(random.choice(letters) for i in range(stringLength))
-
-#Converts ASCII to hexidececimal value
-def asciiToHex(input):
-	output = ""
-	#Runs through all characters in the input to convert into ASCII based string from Hex
-	for character in input:
-		temp = hex(ord(character))[2:]
-		#If the starting lengh of the temp character is 1 then there will be added a 0 infront
-		if len(temp) <= 1:
-			# Adding the character based from the conversion in privous step
-			output += "0"
-		output += temp
-	#Returns the ASCII value of the hex
-	return output
 
 
 #Standard home Page for the main entry to the page

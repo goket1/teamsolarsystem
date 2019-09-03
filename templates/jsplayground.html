@@ -6,9 +6,35 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src="{{ url_for('static', filename='jquery/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='javascript/converter.js') }}" ></script>
 </head>
 <body>
-    <button onclick="append_update()">Add Number</button>
+    <input type="number" id="kilometersinput" value="0">
+    <button onclick="ShowCaluations()">test</button>
+    <p id="kilometers">kilometers:</p>
+    <p id="giraffe">giraffe:</p>
+    <p id="car"> car:</p>
+    <p id="bus">bus:</p>
+    <p id="footballfield">footballfield:</p>
+    <!-- <div id="earth"></div> -->
+    
+
+    <script>
+    function ShowCaluations(){
+        let km= document.getElementById('kilometersinput').value
+        console.log(km);
+        document.getElementById("kilometers").innerHTML = "kilometers: " + ConvertForScale(km,1000)
+        document.getElementById("giraffe").innerHTML = "giraffe: " +ConvertForScale(km,6.1)
+        document.getElementById("car").innerHTML = "car: " +ConvertForScale(km,4.5)
+        document.getElementById("bus").innerHTML = "bus: " +ConvertForScale(km,14)
+        document.getElementById("footballfield").innerHTML = "footballfield: " +ConvertForScale(km,100)
+        //document.getElementById("earth").innerHTML = ConvertForScale(1,)
+        
+    }
+    
+    
+    </script>
+    <!-- <button onclick="append_update()">Add Number</button>
     <button onclick="remove_update()">Remove Number</button>
     <button onclick="getSession()">Get Session</button>
     <button onclick="deleteSession()">Delete Session</button>
@@ -84,6 +110,6 @@
         var obj = jQuery.getJSON("http://127.0.0.1:5000/getsession");
         
         
-    </script>
+    </script> -->
 </body>
 </html>

@@ -4,25 +4,7 @@
 {% block body %}
 
 <!-- Modal -->
-<div class="modal fade" id="sessionIDModal" tabindex="-1" role="dialog" aria-labelledby="sessionIDModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="sessionIDModalLabel">Input scanner id</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        {% include 'set_scanner_id.html' %}
-      </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+{% include 'set_scanner_id_modal.html' %}
 
 <div class="bd-example carousel-fade">
   <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
@@ -41,8 +23,19 @@
     </ol>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="/static/resources/images/Sun.png" class="d-block w-50 img-responsive" alt="...">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fringilla dapibus quam sed blandit. Aenean lacinia lorem sed nisi pellentesque interdum. Sed eget suscipit metus, et feugiat metus. Phasellus dignissim, eros eu hendrerit scelerisque, odio leo dapibus odio, nec bibendum tellus ante ac risus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Duis sodales congue fermentum. Vivamus tristique sem non ullamcorper interdum. Nulla vel lacinia sem. Nullam eleifend blandit nisi, vehicula hendrerit metus pellentesque vel. Pellentesque mattis a lectus vel ornare. Nullam sapien arcu, placerat eget maximus et, suscipit in ligula. Mauris auctor, massa vel dictum venenatis, est dolor gravida sapien, in ultricies augue metus ut diam. Sed quis erat nunc. Maecenas sem libero, venenatis et auctor vitae, consequat ut libero. Sed luctus, erat non consectetur venenatis, lorem erat rhoncus nisl, ac condimentum turpis lacus at leo. Suspendisse potenti. Suspendisse convallis quam vel ex interdum suscipit. Aenean orci augue, euismod ut nisl ut, eleifend scelerisque arcu. Phasellus accumsan urna sodales turpis aliquet, ac euismod nibh rutrum. Praesent sed mi tempus, faucibus ipsum eu, pellentesque turpis. Fusce sagittis leo vel venenatis volutpat. Fusce ac mauris eu dui ullamcorper interdum vitae nec risus. Nam venenatis mattis lectus, eget molestie nisl rhoncus non. Maecenas eleifend metus a massa malesuada, ut lacinia sapien suscipit. Pellentesque volutpat eros ut metus consectetur maximus. Fusce hendrerit feugiat rhoncus. Quisque efficitur orci dolor. Mauris in lorem id mi ullamcorper iaculis nec eget ipsum. Vivamus ut molestie nunc, quis commodo justo. Fusce nisl libero, pretium quis rutrum eget, molestie at arcu. Morbi in massa sagittis, venenatis ex id, accumsan ipsum. Aliquam erat volutpat. Quisque at vulputate ex, in dignissim nunc. Quisque a egestas felis. Quisque sed hendrerit risus, in tincidunt nibh. Suspendisse condimentum neque sed ligula mollis, a viverra dui condimentum. Fusce a neque erat. Cras malesuada felis ut arcu pharetra, non placerat ligula malesuada. Sed ac efficitur mi, nec semper ante. Nunc arcu odio, blandit sed tristique non, vulputate in sem. Vestibulum pulvinar ipsum ut tellus euismod commodo. Fusce nec tortor felis. Aliquam sit amet urna dapibus, feugiat odio eu, tristique quam. Quisque ut lacus nec ante finibus finibus nec ullamcorper erat. Maecenas at felis imperdiet, eleifend tellus a, pretium nulla. Curabitur orci neque, luctus in sapien eget, molestie facilisis velit.</p>
+          <div class="container">
+          <div class="row">
+            <div class="col-sm">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fringilla dapibus quam sed blandit. Aenean lacinia lorem sed nisi pellentesque interdum. Sed eget suscipit metus, et feugiat metus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fringilla dapibus quam sed blandit. Aenean lacinia lorem sed nisi pellentesque interdum. Sed eget suscipit metus, et feugiat metus.</p>
+            </div>
+            <div class="col-6">
+                <img src="/static/resources/images/Sun.png" class="d-block w-100 img-responsive" alt="Sun">
+            </div>
+            <div class="col-sm">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fringilla dapibus quam sed blandit. Aenean lacinia lorem sed nisi pellentesque interdum. Sed eget suscipit metus, et feugiat metus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fringilla dapibus quam sed blandit. Aenean lacinia lorem sed nisi pellentesque interdum. Sed eget suscipit metus, et feugiat metus.</p>
+            </div>
+          </div>
+        </div>
         <div class="carousel-caption d-none d-md-block">
           <div class="p-3 mb-2 bg-dark text-white">
             <h5 class="text-light">Da sun</h5>

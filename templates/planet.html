@@ -23,27 +23,29 @@
     </ol>
     <div class="carousel-inner">
       <div class="carousel-item active">
-          <div class="container">
-          <div class="row">
-            <div class="col-sm">
-                <div class="container">
-                  <div class="row">
-                      <div class="col"><h5><i class="fas fa-car" data-toggle="tooltip" data-placement="top" title="Car"></i></h5></div>
-                      <div class="col"><h5>x</h5></div>
-                      <div class="col"><h5>2</h5></div>
-                      <div class="w-100"></div>
-                      <div class="col"><h5><i class="fas fa-bus-alt" data-toggle="tooltip" data-placement="top" title="Bus"></i></h5></div>
-                      <div class="col"><h5>x</h5></div>
-                      <div class="col"><h5>2</h5></div>
-                      <div class="w-100"></div>
-                      <div class="col"><h5><i class="fas fa-futbol" data-toggle="tooltip" data-placement="top" title="Football fields"></i></h5></div>
-                      <div class="col"><h5>x</h5></div>
-                      <div class="col"><h5>2</h5></div>                  </div>
-                </div>
+        <div class="container">
+        <div class="row">
+          
+          <div class="col-sm">
+              <div class="container">
+                <div class="row">
+                    <div class="col"><h5><i class="fas fa-car" data-toggle="tooltip" data-placement="top" title="Car"></i></h5></div>
+                    <div class="col"><h5>x</h5></div>
+                    <div class="col"><h5 id="carValue">2</h5></div>
+                    <div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-bus-alt" data-toggle="tooltip" data-placement="top" title="Bus"></i></h5></div>
+                    <div class="col"><h5>x</h5></div>
+                    <div class="col"><h5 id="busFieldValue">2</h5></div>
+                    <div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-futbol" data-toggle="tooltip" data-placement="top" title="Football fields"></i></h5></div>
+                    <div class="col"><h5>x</h5></div>
+                    <div class="col"><h5 id="footballFieldValue">2</h5></div>                  
+                  </div>
+              </div>
 
 
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fringilla dapibus quam sed blandit. Aenean lacinia lorem sed nisi pellentesque interdum. Sed eget suscipit metus, et feugiat metus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fringilla dapibus quam sed blandit. Aenean lacinia lorem sed nisi pellentesque interdum. Sed eget suscipit metus, et feugiat metus.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fringilla dapibus quam sed blandit. Aenean lacinia lorem sed nisi pellentesque interdum. Sed eget suscipit metus, et feugiat metus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fringilla dapibus quam sed blandit. Aenean lacinia lorem sed nisi pellentesque interdum. Sed eget suscipit metus, et feugiat metus.</p>
             </div>
             <div class="col-6">
                 <img src="/static/resources/images/Sun.png" class="d-block w-100 img-responsive" alt="Sun">
@@ -146,6 +148,9 @@
 </div>
 
 <script src="{{ url_for('static', filename='custom/js/planet_updater.js') }}"></script>
+<script>
 
+
+</script>
 {% endblock %}
 

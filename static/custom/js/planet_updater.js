@@ -1,11 +1,24 @@
 //Static variables
 var session_id_api_endpoint_url = '/session';
-var planet_update_api_endpoint_url = '/client_update?scanner_id=';
+var planet_update_api_endpoint_url = '/planetInfo';
 
 var session_id = get_session_id();
+var celestialBody = '';
+
+function get_ajax_headers(url, headers){
+    console.log('Posting to: ' + url + headers);
+    $.ajax({
+            url: url,
+            method: 'GET',
+            headers: headers,
+            success: function(data){
+                celestialBody = JSON.parse(JSON.stringify(data));
+            }
+        })
+}
 
 function getSessionIdFromJSON(json){
-    return JSON.parse(JSON.stringify(json)).session
+    return JSON.parse(JSON.stringify(json)).session;
 }
 
 function get_session_id(){
@@ -18,16 +31,29 @@ function get_session_id(){
 }
 
 function update_planet() {
-    console.log("Getting planet client update");
-    $.get(planet_update_api_endpoint_url + session_id,
-    function(data) {
-        console.log("planet client update response:" + data);
-        if (data == "('Mars',)") {
-            $('.carousel').carousel(4);
-        } else if (data == "('Earth',)") {
+    console.log("Getting planet client update session: " + session_id);
+    get_ajax_headers(planet_update_api_endpoint_url, {session: session_id});
+    console.log(celestialBody);
+    switch (celestialBody.name) {
+        case "Sun":
+            $('.carousel').carousel(0);
+            break;
+        case "Mercury":
+            $('.carousel').carousel(1);
+            break;
+        case "Venus":
+            $('.carousel').carousel(2);
+            break;
+        case "Earth":
             $('.carousel').carousel(3);
-        }
-    })
+            break;
+        case "Mars":
+            $('.carousel').carousel(4);
+            break;
+        case "Pepe":
+            $('.carousel').carousel(10);
+            break;
+    }
 }
 
 //Runs on page load
@@ -40,4 +66,7 @@ $( document ).ready(function() {
     }else{
         document.getElementById("set_session_id").innerHTML = session_id;
     }
+    $('.carousel').carousel({
+        interval: false
+    });
 });

@@ -27,7 +27,7 @@ function ConvertForScale(km, scale){
     console.log(km +  " " + meters);
     if(meters !== 0 && scale !== 0){
         console.log(meters / scale);
-        return meters / scale;
+        return Math.round(meters / scale);
     }
     else {
         console.log(km +  " " + meters);

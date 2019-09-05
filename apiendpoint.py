@@ -5,8 +5,12 @@ import string
 
 #Importing blueprint
 from flask import Blueprint,jsonify,session,request,render_template
-
+#Importing Database connection from the file "dbconnect.py" in the same location
 from dbconnect import connection
+
+#Import planet class
+from planet import PlanetInfo
+
 #here i register the api with the name "api_endpoint"
 api_endpoint = Blueprint('api_endpoint', __name__)
 
@@ -37,32 +41,32 @@ class sessionInfo:
 	def serialize(self):
 		return{
 			"session" : self.session,
-			"timestamp" : self.timestamp	
+			"timestamp" : self.timestamp
 		}
-		
-class PlanetInfo:
-	def __init__ (self,name,radius,description,
-	gravity,rotationspeed,surfacetempaverage, coretemp, bodytype):
-		self.name = name
-		self.radius = radius
-		self.description = description
-		self.gravity = gravity
-		self.rotationspeed = rotationspeed
-		self.surfacetempaverage = surfacetempaverage
-		self.coretemp = coretemp
-		self.bodytype = bodytype
 
-	def serialize(self):
-		return{
-			"name" : self.name,
-			"radius" : self.radius,
-			"description" : self.description,
-			"gravity" : self.gravity,
-			"rotationspeed" : self.rotationspeed,
-			"surfacetempaverage" : self.surfacetempaverage,
-			"coretemp" : self.coretemp,
-			"bodytype" : self.bodytype
-		}
+	class PlanetInfo:
+		def __init__(self, name, radius, description,
+					 gravity, rotationspeed, surfacetempaverage, coretemp, bodytype):
+			self.name = name
+			self.radius = radius
+			self.description = description
+			self.gravity = gravity
+			self.rotationspeed = rotationspeed
+			self.surfacetempaverage = surfacetempaverage
+			self.coretemp = coretemp
+			self.bodytype = bodytype
+
+		def serialize(self):
+			return {
+				"name": self.name,
+				"radius": self.radius,
+				"description": self.description,
+				"gravity": self.gravity,
+				"rotationspeed": self.rotationspeed,
+				"surfacetempaverage": self.surfacetempaverage,
+				"coretemp": self.coretemp,
+				"bodytype": self.bodytype
+			}
 
 #To register http endpoints here we need to use the name 
 #that is defined in the line with Blueprint
@@ -125,24 +129,23 @@ def getSessions():
 		# which is grouped so we get one entry per session and the lastest session scan
 		print("Calling Session")
 		data = cursor.execute("call GetSessions();")
-		
+
 		#Fetches all the rows returned by the query
 		rv = cursor.fetchall()
-
 		#closes the connection to the database
 		conn.close()
-		#creates an array.
+		#creates an array.api
 		#TODO Rename
 		objects = []
-		
+
 		#For each of the rows in the result
 		for record in rv:
 			#Create a new object of 'sessionInfo' from the records in in the record.
 			objects.append(sessionInfo(record[0],record[1]))
-		#Serializing the each of the objects to make it possible to make it to json objects
-		return jsonify(sessions= [e.serialize() for e in objects])
-	except:
-		return jsonify(message="Error in connection to database or data")
+		#Serializing the each of the objects to make it possible to make it to json objects)
+		return jsonify(sessions=[e.serialize() for e in objects])
+	except Exception as e:
+		return jsonify(message="Error in connection to database or data" + str(e))
 
 
 #TODO could be done with Headers instead of Arguments

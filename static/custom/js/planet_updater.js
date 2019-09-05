@@ -35,11 +35,16 @@ function ConvertForScale(km, scale){
     }
 }
 function showInformationOnWebsite(){
-    console.log("Show information");
-    console.log(document.getElementById("carValue"));
+    //console.log("Show information");
+    //console.log(document.getElementById("carValue"));
+    /*
     document.getElementById("carValue").innerText = ConvertForScale(celestialBody.radius * 2,4.5) ;
     document.getElementById("busFieldValue").innerText = ConvertForScale(celestialBody.radius* 2,14);
-    document.getElementById("footballFieldValue").innerText = ConvertForScale(celestialBody.radius* 2,100)
+    document.getElementById("footballFieldValue").innerText = ConvertForScale(celestialBody.radius* 2,100);
+
+    document.getElementById("planet_name").innerText = celestialBody.name;
+    document.getElementById("planet_description").innerText = celestialBody.description;
+     */
 }
 
 function getSessionIdFromJSON(json){

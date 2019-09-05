@@ -1,3 +1,4 @@
 Flask
 MySQLClient
 Jinja2
+pyOpenSSL

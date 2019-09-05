@@ -9,7 +9,8 @@ from environment import *
 #from apiendpoint import apiendpoints
 from apiendpoint import api_endpoint
 
-
+#Import planet class
+from planet import PlanetInfo
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -22,7 +23,16 @@ app.register_blueprint(api_endpoint)
 
 @app.route('/')
 def index():
-   return render_template('main.html')
+	# start a conneciton
+	cursor, conn = connection()
+	# Call the procedure GetPlanetInfomation
+	data = cursor.execute("call GetAllPlanetsInformation;")
+	# get information in the response from the server
+	planets = []
+	for row in cursor.fetchall():
+		planets.append(PlanetInfo(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7]))
+	conn.close()
+	return render_template('planet.html', planets = planets)
 
 
 '''

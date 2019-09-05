@@ -25,115 +25,400 @@
       <div class="carousel-item active">
         <div class="container">
         <div class="row">
-          
           <div class="col-sm">
               <div class="container">
                 <div class="row">
-                    <div class="col"><h5><i class="fas fa-car" data-toggle="tooltip" data-placement="top" title="Car"></i></h5></div>
-                    <div class="col"><h5>x</h5></div>
-                    <div class="col"><h5 id="carValue">2</h5></div>
+                    <h1>{{planets[8].name}}</h1>
+                    <h3 class="text-muted">{{planets[8].description}}</h3>
+                    <h4>Diameter</h4><div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-ruler" data-toggle="tooltip" data-placement="top" title="Kilometers"></i> x</h5></div>
+                    <h5>{{planets[8].diameter}}</h5>
                     <div class="w-100"></div>
-                    <div class="col"><h5><i class="fas fa-bus-alt" data-toggle="tooltip" data-placement="top" title="Bus"></i></h5></div>
-                    <div class="col"><h5>x</h5></div>
-                    <div class="col"><h5 id="busFieldValue">2</h5></div>
+                    <div class="col"><h5><i class="fas fa-car" data-toggle="tooltip" data-placement="top" title="Car"></i> x</h5></div>
+                    <div class="col"><h5 id="carValue">{{planets[8].car}}</h5></div>
                     <div class="w-100"></div>
-                    <div class="col"><h5><i class="fas fa-futbol" data-toggle="tooltip" data-placement="top" title="Football fields"></i></h5></div>
-                    <div class="col"><h5>x</h5></div>
-                    <div class="col"><h5 id="footballFieldValue">2</h5></div>                  
+                    <div class="col"><h5><i class="fas fa-bus-alt" data-toggle="tooltip" data-placement="top" title="Bus"></i> x</h5></div>
+                    <div class="col"><h5 id="busFieldValue">{{planets[8].bus}}</h5></div>
+                    <div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-futbol" data-toggle="tooltip" data-placement="top" title="Football fields"></i> x</h5></div>
+                    <div class="col"><h5 id="footballFieldValue">{{planets[8].footballfield}}</h5></div>
                   </div>
               </div>
-
-
-
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fringilla dapibus quam sed blandit. Aenean lacinia lorem sed nisi pellentesque interdum. Sed eget suscipit metus, et feugiat metus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fringilla dapibus quam sed blandit. Aenean lacinia lorem sed nisi pellentesque interdum. Sed eget suscipit metus, et feugiat metus.</p>
             </div>
             <div class="col-6">
                 <img src="/static/resources/images/Sun.png" class="d-block w-100 img-responsive" alt="Sun">
             </div>
             <div class="col-sm">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fringilla dapibus quam sed blandit. Aenean lacinia lorem sed nisi pellentesque interdum. Sed eget suscipit metus, et feugiat metus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fringilla dapibus quam sed blandit. Aenean lacinia lorem sed nisi pellentesque interdum. Sed eget suscipit metus, et feugiat metus.</p>
+              <h4>Celestial body</h4>
+              <div class="w-100"></div>
+              <h5><i class="fas fa-globe-americas"></i>
+              {{planets[8].bodytype}}</h5>
+              <div class="w-100"></div>
+              <h4>Core temp</h4>
+              <h5><i class="fas fa-temperature-high"></i>
+              {{planets[8].coretemp}}
+              </h5>
             </div>
           </div>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="/static/resources/images/Mercury.png" class="d-block w-50" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-          <div class="p-3 mb-2 bg-dark text-white">
-            <h5>Mercury</h5>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+        <div class="container">
+        <div class="row">
+          <div class="col-sm">
+              <div class="container">
+                <div class="row">
+                    <h1>{{planets[3].name}}</h1>
+                    <h3 class="text-muted">{{planets[3].description}}</h3>
+                    <h4>Diameter</h4><div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-ruler" data-toggle="tooltip" data-placement="top" title="Kilometers"></i> x</h5></div>
+                    <h5 id="diameter">{{planets[3].diameter}}</h5>
+                    <div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-car" data-toggle="tooltip" data-placement="top" title="Car"></i> x</h5></div>
+                    <div class="col"><h5 id="carValue">{{planets[3].car}}</h5></div>
+                    <div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-bus-alt" data-toggle="tooltip" data-placement="top" title="Bus"></i> x</h5></div>
+                    <div class="col"><h5 id="busFieldValue">{{planets[3].bus}}</h5></div>
+                    <div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-futbol" data-toggle="tooltip" data-placement="top" title="Football fields"></i> x</h5></div>
+                    <div class="col"><h5 id="footballFieldValue">{{planets[3].footballfield}}</h5></div>
+                  </div>
+              </div>
+            </div>
+            <div class="col-6">
+                <img src="/static/resources/images/Mercury.png" class="d-block w-100 img-responsive" alt="Sun">
+            </div>
+            <div class="col-sm">
+              <h4>Celestial body</h4>
+              <div class="w-100"></div>
+              <h5><i class="fas fa-globe-americas"></i>
+              {{planets[3].bodytype}}</h5>
+              <div class="w-100"></div>
+              <h4>Core temp</h4>
+              <h5><i class="fas fa-temperature-high"></i>
+              {{planets[3].coretemp}}
+              </h5>
+            </div>
           </div>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="/static/resources/images/Venus.png" class="d-block w-50" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-          <div class="p-3 mb-2 bg-dark text-white">
-            <h5>Venus</h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <div class="container">
+        <div class="row">
+          <div class="col-sm">
+              <div class="container">
+                <div class="row">
+                    <h1>{{planets[10].name}}</h1>
+                    <h3 class="text-muted">{{planets[10].description}}</h3>
+                    <h4>Diameter</h4><div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-ruler" data-toggle="tooltip" data-placement="top" title="Kilometers"></i> x</h5></div>
+                    <h5 id="diameter">{{planets[10].diameter}}</h5>
+                    <div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-car" data-toggle="tooltip" data-placement="top" title="Car"></i> x</h5></div>
+                    <div class="col"><h5 id="carValue">{{planets[10].car}}</h5></div>
+                    <div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-bus-alt" data-toggle="tooltip" data-placement="top" title="Bus"></i> x</h5></div>
+                    <div class="col"><h5 id="busFieldValue">{{planets[10].bus}}</h5></div>
+                    <div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-futbol" data-toggle="tooltip" data-placement="top" title="Football fields"></i> x</h5></div>
+                    <div class="col"><h5 id="footballFieldValue">{{planets[10].footballfield}}</h5></div>
+                  </div>
+              </div>
+            </div>
+            <div class="col-6">
+                <img src="/static/resources/images/Venus.png" class="d-block w-100 img-responsive" alt="Sun">
+            </div>
+            <div class="col-sm">
+              <h4>Celestial body</h4>
+              <div class="w-100"></div>
+              <h5><i class="fas fa-globe-americas"></i>
+              {{planets[10].bodytype}}</h5>
+              <div class="w-100"></div>
+              <h4>Core temp</h4>
+              <h5><i class="fas fa-temperature-high"></i>
+              {{planets[10].coretemp}}
+              </h5>
+            </div>
           </div>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="/static/resources/images/Earth.png" class="d-block w-50" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-          <div class="p-3 mb-2 bg-dark text-white">
-            <h5 class="text-light">Earth</h5>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+        <div class="container">
+        <div class="row">
+          <div class="col-sm">
+              <div class="container">
+                <div class="row">
+                    <h1>{{planets[0].name}}</h1>
+                    <h3 class="text-muted">{{planets[0].description}}</h3>
+                    <h4>Diameter</h4><div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-ruler" data-toggle="tooltip" data-placement="top" title="Kilometers"></i> x</h5></div>
+                    <h5 id="diameter">{{planets[0].diameter}}</h5>
+                    <div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-car" data-toggle="tooltip" data-placement="top" title="Car"></i> x</h5></div>
+                    <div class="col"><h5 id="carValue">{{planets[0].car}}</h5></div>
+                    <div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-bus-alt" data-toggle="tooltip" data-placement="top" title="Bus"></i> x</h5></div>
+                    <div class="col"><h5 id="busFieldValue">{{planets[0].bus}}</h5></div>
+                    <div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-futbol" data-toggle="tooltip" data-placement="top" title="Football fields"></i> x</h5></div>
+                    <div class="col"><h5 id="footballFieldValue">{{planets[0].footballfield}}</h5></div>
+                  </div>
+              </div>
+            </div>
+            <div class="col-6">
+                <img src="/static/resources/images/Earth.png" class="d-block w-100 img-responsive" alt="Sun">
+            </div>
+            <div class="col-sm">
+              <h4>Celestial body</h4>
+              <div class="w-100"></div>
+              <h5><i class="fas fa-globe-americas"></i>
+              {{planets[0].bodytype}}</h5>
+              <div class="w-100"></div>
+              <h4>Core temp</h4>
+              <h5><i class="fas fa-temperature-high"></i>
+              {{planets[0].coretemp}}
+              </h5>
+            </div>
           </div>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="/static/resources/images/Mars.png" class="d-block w-50" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-          <div class="p-3 mb-2 bg-dark text-white">
-            <h5 class="text-light">Mars</h5>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                     <div class="container">
+        <div class="row">
+          <div class="col-sm">
+              <div class="container">
+                <div class="row">
+                    <h1>{{planets[2].name}}</h1>
+                    <h3 class="text-muted">{{planets[2].description}}</h3>
+                    <h4>Diameter</h4><div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-ruler" data-toggle="tooltip" data-placement="top" title="Kilometers"></i> x</h5></div>
+                    <h5 id="diameter">{{planets[2].diameter}}</h5>
+                    <div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-car" data-toggle="tooltip" data-placement="top" title="Car"></i> x</h5></div>
+                    <div class="col"><h5 id="carValue">{{planets[2].car}}</h5></div>
+                    <div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-bus-alt" data-toggle="tooltip" data-placement="top" title="Bus"></i> x</h5></div>
+                    <div class="col"><h5 id="busFieldValue">{{planets[2].bus}}</h5></div>
+                    <div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-futbol" data-toggle="tooltip" data-placement="top" title="Football fields"></i> x</h5></div>
+                    <div class="col"><h5 id="footballFieldValue">{{planets[2].footballfield}}</h5></div>
+                  </div>
+              </div>
+            </div>
+            <div class="col-6">
+                <img src="/static/resources/images/Mars.png" class="d-block w-100 img-responsive" alt="Sun">
+            </div>
+            <div class="col-sm">
+              <h4>Celestial body</h4>
+              <div class="w-100"></div>
+              <h5><i class="fas fa-globe-americas"></i>
+              {{planets[2].bodytype}}</h5>
+              <div class="w-100"></div>
+              <h4>Core temp</h4>
+              <h5><i class="fas fa-temperature-high"></i>
+              {{planets[2].coretemp}}
+              </h5>
+            </div>
           </div>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="/static/resources/images/Jupiter.png" class="d-block w-50" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-          <div class="p-3 mb-2 bg-dark text-white">
-            <h5 class="text-light">Jupiter</h5>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+        <div class="container">
+        <div class="row">
+          <div class="col-sm">
+              <div class="container">
+                <div class="row">
+                    <h1>{{planets[1].name}}</h1>
+                    <h3 class="text-muted">{{planets[1].description}}</h3>
+                    <h4>Diameter</h4><div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-ruler" data-toggle="tooltip" data-placement="top" title="Kilometers"></i> x</h5></div>
+                    <h5 id="diameter">{{planets[1].diameter}}</h5>
+                    <div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-car" data-toggle="tooltip" data-placement="top" title="Car"></i> x</h5></div>
+                    <div class="col"><h5 id="carValue">{{planets[1].car}}</h5></div>
+                    <div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-bus-alt" data-toggle="tooltip" data-placement="top" title="Bus"></i> x</h5></div>
+                    <div class="col"><h5 id="busFieldValue">{{planets[1].bus}}</h5></div>
+                    <div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-futbol" data-toggle="tooltip" data-placement="top" title="Football fields"></i> x</h5></div>
+                    <div class="col"><h5 id="footballFieldValue">{{planets[1].footballfield}}</h5></div>
+                  </div>
+              </div>
+            </div>
+            <div class="col-6">
+                <img src="/static/resources/images/Jupiter.png" class="d-block w-100 img-responsive" alt="Sun">
+            </div>
+            <div class="col-sm">
+              <h4>Celestial body</h4>
+              <div class="w-100"></div>
+              <h5><i class="fas fa-globe-americas"></i>
+              {{planets[1].bodytype}}</h5>
+              <div class="w-100"></div>
+              <h4>Core temp</h4>
+              <h5><i class="fas fa-temperature-high"></i>
+              {{planets[1].coretemp}}
+              </h5>
+            </div>
           </div>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="/static/resources/images/Saturn.png" class="d-block w-50" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-          <div class="p-3 mb-2 bg-dark text-white">
-            <h5 class="text-light">Saturn</h5>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                <div class="container">
+        <div class="row">
+          <div class="col-sm">
+              <div class="container">
+                <div class="row">
+                    <h1>{{planets[7].name}}</h1>
+                    <h3 class="text-muted">{{planets[7].description}}</h3>
+                    <h4>Diameter</h4><div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-ruler" data-toggle="tooltip" data-placement="top" title="Kilometers"></i> x</h5></div>
+                    <h5 id="diameter">{{planets[7].diameter}}</h5>
+                    <div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-car" data-toggle="tooltip" data-placement="top" title="Car"></i> x</h5></div>
+                    <div class="col"><h5 id="carValue">{{planets[7].car}}</h5></div>
+                    <div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-bus-alt" data-toggle="tooltip" data-placement="top" title="Bus"></i> x</h5></div>
+                    <div class="col"><h5 id="busFieldValue">{{planets[7].bus}}</h5></div>
+                    <div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-futbol" data-toggle="tooltip" data-placement="top" title="Football fields"></i> x</h5></div>
+                    <div class="col"><h5 id="footballFieldValue">{{planets[7].footballfield}}</h5></div>
+                  </div>
+              </div>
+            </div>
+            <div class="col-6">
+                <img src="/static/resources/images/Saturn.png" class="d-block w-100 img-responsive" alt="Sun">
+            </div>
+            <div class="col-sm">
+              <h4>Celestial body</h4>
+              <div class="w-100"></div>
+              <h5><i class="fas fa-globe-americas"></i>
+              {{planets[7].bodytype}}</h5>
+              <div class="w-100"></div>
+              <h4>Core temp</h4>
+              <h5><i class="fas fa-temperature-high"></i>
+              {{planets[7].coretemp}}
+              </h5>
+            </div>
           </div>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="/static/resources/images/Uranus.png" class="d-block w-50" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-          <div class="p-3 mb-2 bg-dark text-white">
-            <h5 class="text-light">Uranus</h5>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+        <div class="container">
+        <div class="row">
+          <div class="col-sm">
+              <div class="container">
+                <div class="row">
+                    <h1>{{planets[9].name}}</h1>
+                    <h3 class="text-muted">{{planets[9].description}}</h3>
+                    <h4>Diameter</h4><div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-ruler" data-toggle="tooltip" data-placement="top" title="Kilometers"></i> x</h5></div>
+                    <h5 id="diameter">{{planets[9].diameter}}</h5>
+                    <div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-car" data-toggle="tooltip" data-placement="top" title="Car"></i> x</h5></div>
+                    <div class="col"><h5 id="carValue">{{planets[9].car}}</h5></div>
+                    <div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-bus-alt" data-toggle="tooltip" data-placement="top" title="Bus"></i> x</h5></div>
+                    <div class="col"><h5 id="busFieldValue">{{planets[9].bus}}</h5></div>
+                    <div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-futbol" data-toggle="tooltip" data-placement="top" title="Football fields"></i> x</h5></div>
+                    <div class="col"><h5 id="footballFieldValue">{{planets[9].footballfield}}</h5></div>
+                  </div>
+              </div>
+            </div>
+            <div class="col-6">
+                <img src="/static/resources/images/Uranus.png" class="d-block w-100 img-responsive" alt="Sun">
+            </div>
+            <div class="col-sm">
+              <h4>Celestial body</h4>
+              <div class="w-100"></div>
+              <h5><i class="fas fa-globe-americas"></i>
+              {{planets[9].bodytype}}</h5>
+              <div class="w-100"></div>
+              <h4>Core temp</h4>
+              <h5><i class="fas fa-temperature-high"></i>
+              {{planets[9].coretemp}}
+              </h5>
+            </div>
           </div>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="/static/resources/images/Neptune.png" class="d-block w-50" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-          <div class="p-3 mb-2 bg-dark text-white">
-            <h5 class="text-light">Neptune</h5>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+        <div class="container">
+        <div class="row">
+          <div class="col-sm">
+              <div class="container">
+                <div class="row">
+                    <h1>{{planets[4].name}}</h1>
+                    <h3 class="text-muted">{{planets[4].description}}</h3>
+                    <h4>Diameter</h4><div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-ruler" data-toggle="tooltip" data-placement="top" title="Kilometers"></i> x</h5></div>
+                    <h5 id="diameter">{{planets[4].diameter}}</h5>
+                    <div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-car" data-toggle="tooltip" data-placement="top" title="Car"></i> x</h5></div>
+                    <div class="col"><h5 id="carValue">{{planets[4].car}}</h5></div>
+                    <div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-bus-alt" data-toggle="tooltip" data-placement="top" title="Bus"></i> x</h5></div>
+                    <div class="col"><h5 id="busFieldValue">{{planets[4].bus}}</h5></div>
+                    <div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-futbol" data-toggle="tooltip" data-placement="top" title="Football fields"></i> x</h5></div>
+                    <div class="col"><h5 id="footballFieldValue">{{planets[4].footballfield}}</h5></div>
+                  </div>
+              </div>
+            </div>
+            <div class="col-6">
+                <img src="/static/resources/images/Neptune.png" class="d-block w-100 img-responsive" alt="Sun">
+            </div>
+            <div class="col-sm">
+              <h4>Celestial body</h4>
+              <div class="w-100"></div>
+              <h5><i class="fas fa-globe-americas"></i>
+              {{planets[4].bodytype}}</h5>
+              <div class="w-100"></div>
+              <h4>Core temp</h4>
+              <h5><i class="fas fa-temperature-high"></i>
+              {{planets[4].coretemp}}
+              </h5>
+            </div>
           </div>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="/static/resources/images/Pluto.png" class="d-block w-50" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-          <div class="p-3 mb-2 bg-dark text-white">
-            <h5 class="text-light">Pluto</h5>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+               <div class="container">
+        <div class="row">
+          <div class="col-sm">
+              <div class="container">
+                <div class="row">
+                    <h1>{{planets[6].name}}</h1>
+                    <h3 class="text-muted">{{planets[6].description}}</h3>
+                    <h4>Diameter</h4><div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-ruler" data-toggle="tooltip" data-placement="top" title="Kilometers"></i> x</h5></div>
+                    <h5 id="diameter">{{planets[6].diameter}}</h5>
+                    <div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-car" data-toggle="tooltip" data-placement="top" title="Car"></i> x</h5></div>
+                    <div class="col"><h5 id="carValue">{{planets[6].car}}</h5></div>
+                    <div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-bus-alt" data-toggle="tooltip" data-placement="top" title="Bus"></i> x</h5></div>
+                    <div class="col"><h5 id="busFieldValue">{{planets[6].bus}}</h5></div>
+                    <div class="w-100"></div>
+                    <div class="col"><h5><i class="fas fa-futbol" data-toggle="tooltip" data-placement="top" title="Football fields"></i> x</h5></div>
+                    <div class="col"><h5 id="footballFieldValue">{{planets[6].footballfield}}</h5></div>
+                  </div>
+              </div>
+            </div>
+            <div class="col-6">
+                <img src="/static/resources/images/Pluto.png" class="d-block w-100 img-responsive" alt="Sun">
+            </div>
+            <div class="col-sm">
+              <h4>Celestial body</h4>
+              <div class="w-100"></div>
+              <h5><i class="fas fa-globe-americas"></i>
+              {{planets[6].bodytype}}</h5>
+              <div class="w-100"></div>
+              <h4>Core temp</h4>
+              <h5><i class="fas fa-temperature-high"></i>
+              {{planets[6].coretemp}}
+              </h5>
+            </div>
           </div>
         </div>
       </div>

@@ -23,7 +23,7 @@ ESP8266WiFiMulti WiFiMulti;
 
 #ifndef STASSID
 #define STASSID "DEV"
-#define STAPSK  "Kaffe10ko"
+#define STAPSK  "pik"
 #endif
 
 const char* ssid     = STASSID;
